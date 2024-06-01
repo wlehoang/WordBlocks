@@ -1,0 +1,81 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ui/menus/main_menu_screen.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="Theme" id=2]
+
+[node name="MainMenuScreen" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 2 )
+scene_name = "main"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 1019.0
+margin_bottom = 595.0
+
+[node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+margin_right = 1014.0
+margin_bottom = 590.0
+custom_constants/separation = 60
+alignment = 1
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+margin_top = 228.0
+margin_right = 1014.0
+margin_bottom = 242.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = SubResource( 2 )
+custom_colors/font_color = Color( 1, 0.996078, 0.996078, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+text = "WORD BLOCKS"
+align = 1
+valign = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
+margin_top = 302.0
+margin_right = 1014.0
+margin_bottom = 362.0
+
+[node name="Button Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
+margin_left = 485.0
+margin_right = 528.0
+margin_bottom = 60.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/Button Rows"]
+margin_right = 43.0
+margin_bottom = 20.0
+text = "PLAY"
+
+[node name="ExitButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/Button Rows"]
+margin_top = 40.0
+margin_right = 43.0
+margin_bottom = 60.0
+text = "EXIT"
+
+[node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
+autoplay = true
+mix_target = 1
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/Button Rows/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/Button Rows/ExitButton" to="." method="_on_ExitButton_pressed"]
