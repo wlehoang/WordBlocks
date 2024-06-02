@@ -22,4 +22,5 @@ func _process(delta):
 	if Input.is_action_pressed("pause"):
 		var pause_menu = PauseScreen.instance()
 		add_child(pause_menu)
+		pause_menu.connect("scene_changed", self, "handle_scene_changed")
 		

@@ -19,10 +19,6 @@ func _process(delta):
 		velocity.x += speed
 	if Input.is_action_pressed("move_left"):
 		velocity.x -= speed
-	if Input.is_action_pressed("move_up"):
-		velocity.y -= speed
-	if Input.is_action_pressed("move_down"):
-		velocity.y += speed
 		
 	var collision = move_and_collide(velocity * delta)
 

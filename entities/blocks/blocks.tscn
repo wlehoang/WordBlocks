@@ -331,15 +331,18 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=66]
+extents = Vector2( 24, 24 )
 
 [node name="Blocks" type="KinematicBody2D"]
-position = Vector2( 208, 40 )
+position = Vector2( 656, 528 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 65 )
+frame = 20
+playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 66 )
