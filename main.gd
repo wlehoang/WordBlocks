@@ -8,6 +8,7 @@ func _ready():
 
 func handle_scene_changed(current_scene_name: String):
 	var next_scene
+	Transition.fade_in()
 	match current_scene_name:
 		"main": next_scene = load("res://levels/level_1/level_1.tscn").instance()
 		"pause": next_scene = load("res://ui/menus/main_menu_screen.tscn").instance()
@@ -17,6 +18,7 @@ func handle_scene_changed(current_scene_name: String):
 	next_scene.connect("scene_changed", self, "handle_scene_changed")
 	current_scene.queue_free()
 	current_scene = next_scene
+	Transition.fade_out()
 	
 func _process(delta):
 	if Input.is_action_pressed("pause"):
