@@ -46,3 +46,10 @@ tile_data = PoolIntArray( 0, 0, 0, 15, 0, 0, 65536, 0, 0, 65551, 0, 0, 131072, 0
 position = Vector2( 480, 544 )
 
 [node name="BlockSpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="BlockFallTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[connection signal="timeout" from="BlockSpawnTimer" to="." method="_on_BlockSpawnTimer_timeout"]

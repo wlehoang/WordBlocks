@@ -1,6 +1,7 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://entities/blocks/assets/glitch_blocks.png" type="Texture" id=1]
+[ext_resource path="res://entities/blocks/blocks.gd" type="Script" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -335,13 +336,14 @@ extents = Vector2( 24, 24 )
 
 [node name="Blocks" type="KinematicBody2D"]
 position = Vector2( 656, 528 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 65 )
-frame = 20
+frame = 59
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
