@@ -55,19 +55,19 @@ margin_top = 302.0
 margin_right = 1014.0
 margin_bottom = 362.0
 
-[node name="Button Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
+[node name="ButtonRows" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
 margin_left = 485.0
 margin_right = 528.0
 margin_bottom = 60.0
 custom_constants/separation = 20
 alignment = 1
 
-[node name="PlayButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/Button Rows"]
+[node name="PlayButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 margin_right = 43.0
 margin_bottom = 20.0
 text = "PLAY"
 
-[node name="ExitButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/Button Rows"]
+[node name="ExitButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 margin_top = 40.0
 margin_right = 43.0
 margin_bottom = 60.0
@@ -77,5 +77,5 @@ text = "EXIT"
 autoplay = true
 mix_target = 1
 
-[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/Button Rows/PlayButton" to="." method="_on_PlayButton_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/Button Rows/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/ExitButton" to="." method="_on_ExitButton_pressed"]

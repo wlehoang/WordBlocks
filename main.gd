@@ -9,7 +9,7 @@ func _ready():
 func handle_scene_changed(current_scene_name: String):
 	var next_scene
 	match current_scene_name:
-		"main": next_scene = load("res://ui/menus/game_over_screen.tscn").instance()
+		"main": next_scene = load("res://levels/level_1/level_1.tscn").instance()
 		"pause": next_scene = load("res://ui/menus/main_menu_screen.tscn").instance()
 		"defeat": next_scene = load("res://ui/menus/main_menu_screen.tscn").instance()
 		_: return

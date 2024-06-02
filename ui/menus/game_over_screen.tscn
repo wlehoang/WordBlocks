@@ -60,22 +60,22 @@ margin_top = 296.0
 margin_right = 1014.0
 margin_bottom = 356.0
 
-[node name="Button Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
+[node name="ButtonRows" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
 margin_left = 474.0
 margin_right = 539.0
 margin_bottom = 60.0
 custom_constants/separation = 20
 
-[node name="RestartButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/Button Rows"]
+[node name="RestartButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 margin_right = 65.0
 margin_bottom = 20.0
 text = "RESTART"
 
-[node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/Button Rows"]
+[node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 margin_top = 40.0
 margin_right = 65.0
 margin_bottom = 60.0
 text = "QUIT"
 
-[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/Button Rows/RestartButton" to="." method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/Button Rows/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/QuitButton" to="." method="_on_QuitButton_pressed"]
