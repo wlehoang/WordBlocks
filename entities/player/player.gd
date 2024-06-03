@@ -5,7 +5,7 @@ onready var facing = $FacingRayCast
 onready var selectionarea = $SelectionArea
 
 var tile_size
-var inventory = null
+var inventory = -1
 var gravity = 1000
 
 func _ready():
@@ -19,7 +19,9 @@ func _physics_process(delta):
 		position = Globals.snap_to_grid(position, tile_size)
 
 func _unhandled_input(event):
-	if event.is_action_pressed("select_down"):
+	if event.is_action_pressed("select_up"):
+		handle_selection_area("up")
+	elif event.is_action_pressed("select_down"):
 		handle_selection_area("down")
 	elif event.is_action_pressed("select_right"):
 		handle_selection_area("right")
@@ -29,25 +31,35 @@ func _unhandled_input(event):
 		handle_move("right")
 	elif event.is_action_pressed("move_left"):
 		handle_move("left")
-	elif event.is_action_pressed("pickup"):
-		if inventory == null:
+	elif event.is_action_pressed("pickup_or_drop"):
+		if inventory == -1:
 			var all_selected = get_tree().get_nodes_in_group("selected")
 			if all_selected.size() > 0:
 				inventory = all_selected[0].block_type
 				all_selected[0].queue_free()
 				print("block picked up: " + str(inventory))
-	elif event.is_action_pressed("drop"):
-		if not facing.is_colliding() and inventory:
-			print("block dropped: " + str(inventory))
-			var dropped_block = Blocks.instance()
-			var spawn_position = facing.global_transform * facing.cast_to
-			dropped_block.position = Globals.snap_to_grid(spawn_position, tile_size)
-			dropped_block.select_block_type(inventory)
-			get_parent().add_child(dropped_block)
-			inventory = null
+		else:
+			if not facing.is_colliding():
+				print("block dropped: " + str(inventory))
+				var dropped_block = Blocks.instance()
+				var spawn_position = facing.global_transform * facing.cast_to
+				dropped_block.position = Globals.snap_to_grid(spawn_position, tile_size)
+				dropped_block.select_block_type(inventory)
+				get_parent().add_child(dropped_block)
+				inventory = -1
+			else:
+				var collider = facing.get_collider()
+				if collider.is_in_group("block"):
+					var sel_block = collider.block_type
+					collider.select_block_type(inventory)
+					inventory = sel_block
 
 func handle_selection_area(area: String):
-	if area == "down":
+	if area == "up":
+		selectionarea.global_position.x = global_position.x - tile_size
+		selectionarea.global_position.y = global_position.y - tile_size
+		facing.cast_to = Vector2(0, -tile_size)
+	elif area == "down":
 		selectionarea.global_position.x = global_position.x - tile_size
 		selectionarea.global_position.y = global_position.y + tile_size
 		facing.cast_to = Vector2(0, tile_size)
