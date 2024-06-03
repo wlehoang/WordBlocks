@@ -1,27 +1,7 @@
-[gd_scene load_steps=96 format=2]
+[gd_scene load_steps=97 format=2]
 
 [ext_resource path="res://entities/blocks/assets/glitch_blocks.png" type="Texture" id=1]
 [ext_resource path="res://entities/blocks/blocks.gd" type="Script" id=2]
-
-[sub_resource type="AtlasTexture" id=67]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 288, 288, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=68]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 336, 288, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=69]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 192, 288, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=70]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 240, 288, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=71]
 flags = 4
@@ -52,6 +32,16 @@ region = Rect2( 48, 336, 48, 48 )
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 96, 336, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=67]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 288, 288, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=68]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 336, 288, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=77]
 flags = 4
@@ -92,21 +82,6 @@ region = Rect2( 48, 48, 48, 48 )
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 336, 336, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=132]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 336, 336, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=85]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 240, 336, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=86]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 288, 336, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=87]
 flags = 4
@@ -183,6 +158,21 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 192, 336, 48, 48 )
 
+[sub_resource type="AtlasTexture" id=132]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 336, 336, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=85]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 240, 336, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=86]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 288, 336, 48, 48 )
+
 [sub_resource type="AtlasTexture" id=102]
 flags = 4
 atlas = ExtResource( 1 )
@@ -192,6 +182,16 @@ region = Rect2( 0, 144, 48, 48 )
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 48, 144, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=69]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 192, 288, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=70]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 240, 288, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=104]
 flags = 4
@@ -460,16 +460,6 @@ region = Rect2( 144, 288, 48, 48 )
 
 [sub_resource type="SpriteFrames" id=131]
 animations = [ {
-"frames": [ SubResource( 67 ), SubResource( 67 ), SubResource( 67 ), SubResource( 67 ), SubResource( 67 ), SubResource( 68 ), SubResource( 67 ), SubResource( 67 ), SubResource( 67 ), SubResource( 67 ) ],
-"loop": true,
-"name": "block_!",
-"speed": 8.0
-}, {
-"frames": [ SubResource( 69 ), SubResource( 69 ), SubResource( 69 ), SubResource( 69 ), SubResource( 69 ), SubResource( 70 ), SubResource( 69 ), SubResource( 69 ), SubResource( 69 ), SubResource( 69 ) ],
-"loop": true,
-"name": "block_?",
-"speed": 8.0
-}, {
 "frames": [ SubResource( 71 ), SubResource( 71 ), SubResource( 71 ), SubResource( 71 ), SubResource( 71 ), SubResource( 72 ), SubResource( 71 ), SubResource( 71 ), SubResource( 71 ), SubResource( 71 ) ],
 "loop": true,
 "name": "block_a",
@@ -483,6 +473,11 @@ animations = [ {
 "frames": [ SubResource( 75 ), SubResource( 75 ), SubResource( 76 ), SubResource( 76 ) ],
 "loop": true,
 "name": "block_bomb",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 67 ), SubResource( 67 ), SubResource( 67 ), SubResource( 67 ), SubResource( 67 ), SubResource( 68 ), SubResource( 67 ), SubResource( 67 ), SubResource( 67 ), SubResource( 67 ) ],
+"loop": true,
+"name": "block_bonus",
 "speed": 8.0
 }, {
 "frames": [ SubResource( 77 ), SubResource( 77 ), SubResource( 77 ), SubResource( 77 ), SubResource( 77 ), SubResource( 78 ), SubResource( 77 ), SubResource( 77 ), SubResource( 77 ), SubResource( 77 ) ],
@@ -509,11 +504,6 @@ animations = [ {
 "loop": true,
 "name": "block_empty",
 "speed": 5.0
-}, {
-"frames": [ SubResource( 132 ), SubResource( 85 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 85 ) ],
-"loop": true,
-"name": "block_eye",
-"speed": 8.0
 }, {
 "frames": [ SubResource( 87 ), SubResource( 87 ), SubResource( 87 ), SubResource( 87 ), SubResource( 87 ), SubResource( 88 ), SubResource( 87 ), SubResource( 87 ), SubResource( 87 ), SubResource( 87 ) ],
 "loop": true,
@@ -555,9 +545,19 @@ animations = [ {
 "name": "block_left",
 "speed": 8.0
 }, {
+"frames": [ SubResource( 132 ), SubResource( 85 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 85 ) ],
+"loop": true,
+"name": "block_locked",
+"speed": 8.0
+}, {
 "frames": [ SubResource( 102 ), SubResource( 102 ), SubResource( 102 ), SubResource( 102 ), SubResource( 102 ), SubResource( 103 ), SubResource( 102 ), SubResource( 102 ), SubResource( 102 ), SubResource( 102 ) ],
 "loop": true,
 "name": "block_m",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 69 ), SubResource( 69 ), SubResource( 69 ), SubResource( 69 ), SubResource( 69 ), SubResource( 70 ), SubResource( 69 ), SubResource( 69 ), SubResource( 69 ), SubResource( 69 ) ],
+"loop": true,
+"name": "block_mystery",
 "speed": 8.0
 }, {
 "frames": [ SubResource( 104 ), SubResource( 104 ), SubResource( 104 ), SubResource( 104 ), SubResource( 104 ), SubResource( 105 ), SubResource( 104 ), SubResource( 104 ), SubResource( 104 ), SubResource( 104 ) ],
@@ -639,6 +639,9 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=133]
 extents = Vector2( 32, 32 )
 
+[sub_resource type="RectangleShape2D" id=134]
+extents = Vector2( 24, 24 )
+
 [node name="Blocks" type="KinematicBody2D"]
 position = Vector2( 32, 32 )
 moving_platform_apply_velocity_on_leave = 2
@@ -653,3 +656,20 @@ playing = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2( 0.99, 0.99 )
 shape = SubResource( 133 )
+
+[node name="Highlight" type="ReferenceRect" parent="."]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+mouse_filter = 2
+border_width = 2.0
+editor_only = false
+
+[node name="SelectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SelectionArea"]
+shape = SubResource( 134 )
+
+[connection signal="area_entered" from="SelectionArea" to="." method="_on_SelectionArea_area_entered"]
+[connection signal="area_exited" from="SelectionArea" to="." method="_on_SelectionArea_area_exited"]
