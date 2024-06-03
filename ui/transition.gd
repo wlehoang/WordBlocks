@@ -12,9 +12,3 @@ func fade_in():
 func fade_out():
 	animation_player.play_backwards("Fade In")
 	yield(animation_player, "animation_finished")
-
-func _on_AnimationPlayer_animation_finished(anim_name):
-	print("stop")
-
-func _on_AnimationPlayer_animation_started(anim_name):
-	print("start")

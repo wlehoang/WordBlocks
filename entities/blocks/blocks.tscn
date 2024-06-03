@@ -510,7 +510,7 @@ animations = [ {
 "name": "block_empty",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 132 ), SubResource( 85 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 85 ) ],
+"frames": [ SubResource( 132 ), SubResource( 85 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 86 ), SubResource( 85 ) ],
 "loop": true,
 "name": "block_eye",
 "speed": 8.0
@@ -636,18 +636,20 @@ animations = [ {
 "speed": 8.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=66]
-extents = Vector2( 24, 24 )
+[sub_resource type="RectangleShape2D" id=133]
+extents = Vector2( 32, 32 )
 
 [node name="Blocks" type="KinematicBody2D"]
-position = Vector2( 656, 528 )
+position = Vector2( 32, 32 )
+moving_platform_apply_velocity_on_leave = 2
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 1.34, 1.34 )
 frames = SubResource( 131 )
-animation = "block_eye"
-frame = 3
+animation = "block_empty"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 66 )
+scale = Vector2( 0.99, 0.99 )
+shape = SubResource( 133 )

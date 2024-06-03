@@ -1,32 +1,26 @@
 extends Node2D
 
 const Blocks = preload("res://entities/blocks/blocks.tscn")
+export (String) var scene_name
+export (int) var tile_size = 64
 
-var cell_size = 64
+signal scene_changed(scene_name)
 
 func _ready():
-	set_process_input(true)
-	randomize()
-	spawn(randi() % 20)
+	add_to_group("map")
 	
 func _process(delta):
 	pass
-	#randomize()
-	#spawn(randi() % 20)
 
-func spawn(column):
-	var node = Blocks.instance()
-	var current_animation : String = node.get_node("AnimatedSprite").animation
-	var sprite_texture : Texture = node.get_node("AnimatedSprite").frames.get_frame(current_animation, 0)
-	var block_size = Vector2(cell_size, cell_size)
-	var texture_size = sprite_texture.get_size()
-	var scale_factor = block_size * 0.99 / texture_size
-	node.scale = scale_factor
-	var spawn_x = (column + 1.5) * block_size.x
-	node.position = (Vector2(spawn_x, block_size.y / 2))
-	add_child(node)
+func handle_block_spawn(column):
+	var block = Blocks.instance()
+	var current_animation : String = block.get_node("AnimatedSprite").animation
+	block.position = (Vector2((column + 1.5) * tile_size, tile_size / 2))
+	add_child(block)
 
+func handle_next_level():
+	emit_signal("scene_changed", scene_name)
 
 func _on_BlockSpawnTimer_timeout():
 	randomize()
-	spawn(randi() % 20)
+	handle_block_spawn(randi() % 14)
