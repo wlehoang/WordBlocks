@@ -1,21 +1,120 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=30 format=2]
 
-[ext_resource path="res://resources/fonts/DarkDepths.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://resources/fonts/PixeloidMono.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/menus/main_menu_screen.gd" type="Script" id=2]
 [ext_resource path="res://resources/themes/button_theme.tres" type="Theme" id=3]
+[ext_resource path="res://entities/player/assets/princess.png" type="Texture" id=4]
+[ext_resource path="res://entities/player/assets/knight.png" type="Texture" id=5]
+[ext_resource path="res://entities/player/assets/wizard.png" type="Texture" id=6]
+[ext_resource path="res://ui/assets/lit_floor.png" type="Texture" id=8]
+[ext_resource path="res://levels/common/eye.tscn" type="PackedScene" id=9]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0.164706, 0, 0.482353, 1 )
 
 [sub_resource type="DynamicFont" id=7]
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=8]
 font_data = ExtResource( 1 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=24]
+extents = Vector2( 18.6667, 19.3333 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=18]
+animations = [ {
+"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=25]
+extents = Vector2( 18.6667, 19.3333 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=23]
+animations = [ {
+"frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=26]
+extents = Vector2( 18.6667, 19.3333 )
 
 [node name="MainMenuScreen" type="CanvasLayer"]
 pause_mode = 2
@@ -25,54 +124,59 @@ scene_name = "main"
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 custom_styles/panel = SubResource( 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 1019.0
-margin_bottom = 595.0
-
-[node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
 margin_right = 1014.0
 margin_bottom = 590.0
+mouse_filter = 2
+
+[node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+margin_right = 1004.0
+margin_bottom = 580.0
+mouse_filter = 2
 custom_constants/separation = 60
 alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 244.0
-margin_right = 1014.0
-margin_bottom = 346.0
+margin_top = 246.0
+margin_right = 1004.0
+margin_bottom = 334.0
+mouse_filter = 2
 
 [node name="ButtonRows" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
 margin_left = 452.0
-margin_right = 562.0
-margin_bottom = 102.0
-custom_constants/separation = 15
+margin_right = 552.0
+margin_bottom = 88.0
+mouse_filter = 2
+custom_constants/separation = 5
 alignment = 1
 
 [node name="StartButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
-margin_right = 110.0
-margin_bottom = 24.0
+margin_right = 100.0
+margin_bottom = 26.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 7 )
 text = "START"
 
 [node name="SettingsButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
-margin_top = 39.0
-margin_right = 110.0
-margin_bottom = 63.0
+margin_top = 31.0
+margin_right = 100.0
+margin_bottom = 57.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 7 )
 text = "SETTINGS"
 
 [node name="ExitButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
-margin_top = 78.0
-margin_right = 110.0
-margin_bottom = 102.0
+margin_top = 62.0
+margin_right = 100.0
+margin_bottom = 88.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 8 )
 text = "EXIT"
@@ -81,9 +185,99 @@ text = "EXIT"
 autoplay = true
 mix_target = 1
 
+[node name="PrincessArea" type="Area2D" parent="."]
+position = Vector2( 344, 480 )
+scale = Vector2( 3, 3 )
+z_index = 2
+
+[node name="Princess" type="AnimatedSprite" parent="PrincessArea"]
+unique_name_in_owner = true
+frames = SubResource( 13 )
+animation = "idle"
+frame = 2
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PrincessArea"]
+position = Vector2( 0, -0.666656 )
+shape = SubResource( 24 )
+
+[node name="FadeOut" type="ColorRect" parent="PrincessArea"]
+margin_left = -19.0
+margin_top = -11.0
+margin_right = 19.0
+margin_bottom = 19.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0.54902 )
+
+[node name="KnightArea" type="Area2D" parent="."]
+position = Vector2( 512, 480 )
+scale = Vector2( 3, 3 )
+z_index = 2
+
+[node name="Knight" type="AnimatedSprite" parent="KnightArea"]
+unique_name_in_owner = true
+frames = SubResource( 18 )
+animation = "idle"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KnightArea"]
+position = Vector2( 0, -0.666656 )
+shape = SubResource( 25 )
+
+[node name="FadeOut" type="ColorRect" parent="KnightArea"]
+margin_left = -19.0
+margin_top = -11.0
+margin_right = 19.0
+margin_bottom = 19.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0.54902 )
+
+[node name="WizardArea" type="Area2D" parent="."]
+position = Vector2( 680, 480 )
+scale = Vector2( 3, 3 )
+z_index = 2
+
+[node name="Wizard" type="AnimatedSprite" parent="WizardArea"]
+unique_name_in_owner = true
+frames = SubResource( 23 )
+animation = "idle"
+frame = 2
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WizardArea"]
+position = Vector2( 0, -0.666656 )
+shape = SubResource( 26 )
+
+[node name="FadeOut" type="ColorRect" parent="WizardArea"]
+margin_left = -19.0
+margin_top = -11.0
+margin_right = 19.0
+margin_bottom = 19.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0.54902 )
+
+[node name="Floor1" type="Sprite" parent="."]
+position = Vector2( 344, 472 )
+texture = ExtResource( 8 )
+
+[node name="Floor2" type="Sprite" parent="."]
+position = Vector2( 512, 472 )
+texture = ExtResource( 8 )
+
+[node name="Floor3" type="Sprite" parent="."]
+position = Vector2( 680, 472 )
+texture = ExtResource( 8 )
+
+[node name="Eye" parent="." instance=ExtResource( 9 )]
+position = Vector2( 344, 424 )
+z_index = 2
+
 [connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/StartButton" to="." method="_on_StartButton_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/SettingsButton" to="." method="_on_SettingsButton_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 [connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/ExitButton" to="." method="_on_ExitButton_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="mouse_entered" from="PrincessArea" to="." method="_on_PrincessArea_mouse_entered"]
+[connection signal="mouse_entered" from="KnightArea" to="." method="_on_KnightArea_mouse_entered"]
+[connection signal="mouse_entered" from="WizardArea" to="." method="_on_WizardArea_mouse_entered"]

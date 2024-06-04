@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://resources/fonts/DarkDepths.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://resources/fonts/PixeloidSans-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/menus/pause_screen.gd" type="Script" id=2]
 [ext_resource path="res://resources/themes/button_theme.tres" type="Theme" id=3]
+[ext_resource path="res://resources/fonts/PixeloidMono.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
@@ -16,24 +17,22 @@ border_color = Color( 0.164706, 0, 0.482353, 1 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 36
-outline_size = 2
-outline_color = Color( 0.164706, 0, 0.482353, 1 )
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=4]
-font_data = ExtResource( 1 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=5]
-font_data = ExtResource( 1 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=6]
-font_data = ExtResource( 1 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=7]
-font_data = ExtResource( 1 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=8]
-font_data = ExtResource( 1 )
+font_data = ExtResource( 4 )
 
 [node name="PauseScreen" type="CanvasLayer"]
 pause_mode = 2
@@ -58,76 +57,77 @@ margin_bottom = 246.0
 [node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 margin_right = 364.0
 margin_bottom = 236.0
-custom_constants/separation = 20
+custom_constants/separation = 10
 alignment = 1
 
 [node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 25.0
+margin_top = 16.0
 margin_right = 364.0
-margin_bottom = 66.0
+margin_bottom = 60.0
 size_flags_horizontal = 3
-size_flags_vertical = 0
+size_flags_vertical = 1
 theme = SubResource( 2 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.164706, 0, 0.482353, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "PAUSED"
 align = 1
 valign = 1
+uppercase = true
 
 [node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 86.0
+margin_top = 70.0
 margin_right = 364.0
-margin_bottom = 210.0
+margin_bottom = 220.0
 
 [node name="ButtonRows" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
-margin_left = 122.0
-margin_right = 241.0
-margin_bottom = 124.0
+margin_left = 126.0
+margin_right = 237.0
+margin_bottom = 150.0
 theme = ExtResource( 3 )
-custom_constants/separation = 1
+custom_constants/separation = 5
 
 [node name="ContinueButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
-margin_right = 119.0
-margin_bottom = 24.0
+margin_right = 111.0
+margin_bottom = 26.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 4 )
 text = "CONTINUE"
 
 [node name="RestartButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
-margin_top = 25.0
-margin_right = 119.0
-margin_bottom = 49.0
+margin_top = 31.0
+margin_right = 111.0
+margin_bottom = 57.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 5 )
 text = "RESTART"
 
 [node name="MainMenuButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
-margin_top = 50.0
-margin_right = 119.0
-margin_bottom = 74.0
+margin_top = 62.0
+margin_right = 111.0
+margin_bottom = 88.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 6 )
 text = "MAIN MENU"
 
 [node name="SettingsButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
-margin_top = 75.0
-margin_right = 119.0
-margin_bottom = 99.0
+margin_top = 93.0
+margin_right = 111.0
+margin_bottom = 119.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 7 )
 text = "SETTINGS"
 
 [node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
-margin_top = 100.0
-margin_right = 119.0
-margin_bottom = 124.0
+margin_top = 124.0
+margin_right = 111.0
+margin_bottom = 150.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 8 )
 text = "QUIT"

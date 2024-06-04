@@ -225,7 +225,7 @@ position = Vector2( -2.86102e-06, -3.99998 )
 scale = Vector2( 3.5, 3.25 )
 frames = SubResource( 59 )
 animation = "princess_idle_right"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
