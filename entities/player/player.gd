@@ -3,7 +3,9 @@ extends KinematicBody2D
 const Blocks = preload("res://entities/blocks/blocks.tscn")
 onready var facing = $FacingRayCast
 onready var selectionarea = $SelectionArea
+onready var direction = "right"
 
+export (String) var player_name = "princess"
 var tile_size
 var inventory = -1
 var gravity = 1000
@@ -51,6 +53,7 @@ func _unhandled_input(event):
 				var collider = facing.get_collider()
 				if collider.is_in_group("block"):
 					var sel_block = collider.block_type
+					print("block swapped: " + str(inventory) + " for " + str(sel_block))
 					collider.select_block_type(inventory)
 					inventory = sel_block
 
@@ -67,10 +70,14 @@ func handle_selection_area(area: String):
 		selectionarea.global_position.x = global_position.x
 		selectionarea.global_position.y = global_position.y
 		facing.cast_to = Vector2(tile_size, 0)
+		direction = "right"
+		$AnimatedSprite.play(player_name + "_idle_" + direction)
 	elif area == "left":
 		selectionarea.global_position.x = global_position.x - 2*tile_size
 		selectionarea.global_position.y = global_position.y
 		facing.cast_to = Vector2(-tile_size, 0)
+		direction = "left"
+		$AnimatedSprite.play(player_name + "_idle_" + direction)
 		
 func handle_move(direction: String):
 	var pos_delta = Vector2.ZERO
@@ -79,15 +86,16 @@ func handle_move(direction: String):
 	elif direction == "left":
 		pos_delta.x -= tile_size
 	var collision = move_and_collide(pos_delta)
+	if direction == "right":
+		handle_selection_area("right")
+	elif direction == "left":
+		handle_selection_area("left")
+	$AnimatedSprite.play(player_name + "_walk_" + direction)
 	if collision:
 		var collided_object = collision.get_collider()
 		if collided_object.is_in_group("block"):
 			handle_jump()
 			collision = move_and_collide(pos_delta)
-	if direction == "right":
-		handle_selection_area("right")
-	elif direction == "left":
-		handle_selection_area("left")
 	
 func handle_jump():
 	var pos_delta = Vector2.ZERO
@@ -95,6 +103,7 @@ func handle_jump():
 	pos_delta.y -= (tile_size * scale_height)
 	if is_on_floor():
 		var collision = move_and_collide(pos_delta)
+		$AnimatedSprite.play(player_name + "_jump_" + direction)
 
 func _on_SelectionArea_body_entered(body):
 	if body.is_in_group("block"):
@@ -103,3 +112,6 @@ func _on_SelectionArea_body_entered(body):
 func _on_SelectionArea_body_exited(body):
 	if body.is_in_group("block"):
 		body.remove_from_group("selected")
+
+func _on_AnimatedSprite_animation_finished():
+	$AnimatedSprite.play(player_name + "_idle_" + direction)

@@ -4,6 +4,7 @@ const PauseScreen = preload("res://ui/menus/pause_screen.tscn")
 const TransitionScreen = preload("res://ui/transition.tscn")
 onready var current_scene = $MainMenuScreen
 onready var transition_screen
+var paused = false
 
 func _ready():
 	current_scene.connect("scene_changed", self, "handle_scene_changed")
@@ -24,9 +25,14 @@ func handle_scene_changed(current_scene_name: String):
 	current_scene = next_scene
 	transition_screen.fade_out()
 	
-func _process(delta):
-	if Input.is_action_pressed("pause"):
-		var pause_menu = PauseScreen.instance()
-		add_child(pause_menu)
-		pause_menu.connect("scene_changed", self, "handle_scene_changed")
+func _input(event):
+	if event.is_action_pressed("ui_cancel") and current_scene.name != "MainMenuScreen":
+		if not paused:
+			var pause_menu = PauseScreen.instance()
+			pause_menu.connect("scene_changed", self, "handle_scene_changed")
+			pause_menu.connect("tree_exited", self, "handle_pause")
+			paused = true
+			add_child(pause_menu)
 		
+func handle_pause():
+	paused = false

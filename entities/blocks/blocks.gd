@@ -88,7 +88,7 @@ func select_block_type(block_number: int = -1):
 		Types.Bonus:
 			animation_name = "block_bonus"
 		Types.Pause:
-			animation_name = "block_pause"
+			animation_name = "block_clock"
 		Types.Bomb:
 			animation_name = "block_bomb"
 		Types.Locked:

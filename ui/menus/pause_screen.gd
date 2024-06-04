@@ -4,8 +4,13 @@ export (String) var scene_name
 signal scene_changed(scene_name)
 
 func _ready() -> void:
-	$PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/ContinueButton.grab_focus()
+	$"%ContinueButton".grab_focus()
 	get_tree().paused = true
+
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().paused = false
+		queue_free()
 
 func _on_ContinueButton_pressed():
 	get_tree().paused = false
@@ -15,6 +20,29 @@ func _on_RestartButton_pressed():
 	get_tree().paused = false
 	emit_signal("scene_changed", scene_name)
 	queue_free()
+	
+func _on_MainMenuButton_pressed():
+	get_tree().paused = false
+	emit_signal("scene_changed", scene_name)
+	queue_free()
+
+func _on_SettingsButton_pressed():
+	pass # Replace with function body.
 
 func _on_QuitButton_pressed():
 	get_tree().quit()
+
+func _on_ContinueButton_mouse_entered():
+	$"%ContinueButton".grab_focus()
+
+func _on_RestartButton_mouse_entered():
+	$"%RestartButton".grab_focus()
+
+func _on_MainMenuButton_mouse_entered():
+	$"%MainMenuButton".grab_focus()
+
+func _on_SettingsButton_mouse_entered():
+	$"%SettingsButton".grab_focus()
+
+func _on_QuitButton_mouse_entered():
+	$"%QuitButton".grab_focus()
