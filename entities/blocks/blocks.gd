@@ -13,6 +13,7 @@ func handle_block_fall():
 	pos_delta.y += get_parent().tile_size;
 	if not test_move(transform, pos_delta):
 		var collision = move_and_collide(pos_delta)
+	detect_word()
 
 func handle_block_selection():
 	if selected == false:
@@ -22,10 +23,18 @@ func handle_block_selection():
 		$Highlight.hide()
 		selected = false
 		
+func sample_letter():
+	var letterDistribution = [1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 7, 7, 7, 8, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 11, 12, 12, 12, 12, 13, 13, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15, 16, 16, 17, 18, 18, 18, 18, 18, 18, 19, 19, 19, 19, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 22, 22, 23, 23, 24, 25, 25, 26]
+	return letterDistribution[randi() % letterDistribution.size()]
+		
 func select_block_type(block_number: int = -1):
 	if block_number == -1:
+		var chanceOfSpecialTile = 0.15
 		randomize()
-		block_number = randi() % 34
+		if randf() < chanceOfSpecialTile:
+			block_number = 27 + randi() % 6
+		else:
+			block_number = sample_letter()
 	block_type = block_number
 	var animation_name = ""
 	match block_type:
@@ -109,3 +118,111 @@ func _on_SelectionArea_area_entered(area):
 
 func _on_SelectionArea_area_exited(area):
 	handle_block_selection()
+
+func typeToLetter(type):
+	match type:
+		Types.A:
+			return "a"
+		Types.B:
+			return "b"
+		Types.C:
+			return "c"
+		Types.D:
+			return "d"
+		Types.E:
+			return "e"
+		Types.F:
+			return "f"
+		Types.G:
+			return "g"
+		Types.H:
+			return "h"
+		Types.I:
+			return "i"
+		Types.J:
+			return "j"
+		Types.K:
+			return "k"
+		Types.L:
+			return "l"
+		Types.M:
+			return "m"
+		Types.N:
+			return "n"
+		Types.O:
+			return "o"
+		Types.P:
+			return "p"
+		Types.Q:
+			return "q"
+		Types.R:
+			return "r"
+		Types.S:
+			return "s"
+		Types.T:
+			return "t"
+		Types.U:
+			return "u"
+		Types.V: 
+			return "v"
+		Types.W:
+			return "w"
+		Types.X:
+			return "x"
+		Types.Y:
+			return "y"
+		Types.Z:
+			return "z"
+	return " "
+
+func detect_word():
+	var left = get_node("Left")
+	var up = get_node("Up")
+	if (left.get_overlapping_bodies().size()>0 && "block_type" in left.get_overlapping_bodies()[0]):
+		return
+	var letterChain = get_word_chain()
+	if letterChain.length()>=4:
+		var letterIndeces = check_letter_chain(letterChain)
+		if letterIndeces.size()==2:
+			pop_letter_chain(letterIndeces)
+
+func get_word_chain():
+	var wordChain = ""
+	var letterReader = self
+	while letterReader!=null:
+		wordChain += typeToLetter(letterReader.block_type)
+		var right = letterReader.get_node("Right")
+		if (right.get_overlapping_bodies().size()>0 && "block_type" in right.get_overlapping_bodies()[0]):
+			letterReader = right.get_overlapping_bodies()[0]
+		else:
+			letterReader = null
+	return wordChain
+
+func check_letter_chain(letterChain):
+	for i in range(letterChain.length() - 5):
+		var substring = letterChain.substr(i, 6)
+		if (get_parent().get_parent().get_node("WordList").has_word(substring)):
+			return [i, i+6]
+	for i in range(letterChain.length() - 4):
+		var substring = letterChain.substr(i, 5)
+		if (get_parent().get_parent().get_node("WordList").has_word(substring)):
+			return [i, i+5]
+	for i in range(letterChain.length() - 3):
+		var substring = letterChain.substr(i, 4)
+		if (get_parent().get_parent().get_node("WordList").has_word(substring)):
+			return [i, i+4]
+	return []
+
+func pop_letter_chain(letterIndeces):
+	var letterTracker = self
+	var letterIndex = 0
+	while letterTracker!=null && letterIndex<letterIndeces[1]:
+		if letterIndex>=letterIndeces[0] && letterIndex<letterIndeces[1]:
+			letterTracker.queue_free()
+		var right = letterTracker.get_node("Right")
+		var collisions = right.get_overlapping_bodies()
+		if collisions.size()>0:
+			letterTracker = collisions[0]
+		else:
+			letterTracker = null
+		letterIndex += 1
