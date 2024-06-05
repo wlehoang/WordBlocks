@@ -646,6 +646,8 @@ extents = Vector2( 24, 24 )
 
 [node name="Blocks" type="KinematicBody2D"]
 position = Vector2( 32, 32 )
+collision_layer = 3
+collision_mask = 3
 moving_platform_apply_velocity_on_leave = 2
 script = ExtResource( 2 )
 
@@ -677,6 +679,7 @@ shape = SubResource( 134 )
 unique_name_in_owner = true
 position = Vector2( -60, 0 )
 collision_layer = 2
+collision_mask = 2
 
 [node name="Collision" type="CollisionShape2D" parent="Left"]
 shape = SubResource( 135 )
@@ -685,6 +688,7 @@ shape = SubResource( 135 )
 unique_name_in_owner = true
 position = Vector2( 60, 0 )
 collision_layer = 2
+collision_mask = 2
 
 [node name="Collision" type="CollisionShape2D" parent="Right"]
 shape = SubResource( 135 )
@@ -693,6 +697,7 @@ shape = SubResource( 135 )
 unique_name_in_owner = true
 position = Vector2( 0, -60 )
 collision_layer = 2
+collision_mask = 2
 
 [node name="Collision" type="CollisionShape2D" parent="Up"]
 shape = SubResource( 135 )
@@ -701,6 +706,7 @@ shape = SubResource( 135 )
 unique_name_in_owner = true
 position = Vector2( 0, 60 )
 collision_layer = 2
+collision_mask = 2
 
 [node name="Collision" type="CollisionShape2D" parent="Down"]
 shape = SubResource( 135 )
