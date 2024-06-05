@@ -2,17 +2,18 @@ extends CanvasLayer
 
 export (String) var scene_name
 const Blocks = preload("res://entities/blocks/blocks.tscn")
+
 onready var title_array = [23, 15, 18, 4, 31, 2, 12, 15, 3, 11, 19]
 onready var block_size = 64
 onready var selected_character = "princess"
+
 var screen_size
-	
-signal scene_changed(scene_name)
+signal scene_changed(new_scene)
 
 func _ready():
 	screen_size = get_viewport().size
-	var x_offset = (screen_size.x - (title_array.size()*block_size))/2
-	var y_offset = screen_size.y / 4
+	var x_offset = (screen_size.x - (title_array.size() * block_size))/2
+	var y_offset = screen_size.y/4
 	$"%StartButton".grab_focus()
 	for i in range(title_array.size()):
 		var block = Blocks.instance()
@@ -59,9 +60,17 @@ func _input(event):
 		handle_character_select()
 			
 func _on_StartButton_pressed():
-	emit_signal("scene_changed", scene_name)
+	var level
+	match selected_character:
+		"princess":
+			level = "level1"
+		"knight":
+			level = "level2"
+		"wizard":
+			level = "level3"
+	emit_signal("scene_changed", level)
 
-func _on_SettingsButton_pressed():
+func _on_OptionsButton_pressed():
 	pass
 
 func _on_ExitButton_pressed():
@@ -70,8 +79,8 @@ func _on_ExitButton_pressed():
 func _on_StartButton_mouse_entered():
 	$"%StartButton".grab_focus()
 
-func _on_SettingsButton_mouse_entered():
-	$"%SettingsButton".grab_focus()
+func _on_OptionsButton_mouse_entered():
+	$"%OptionsButton".grab_focus()
 
 func _on_ExitButton_mouse_entered():
 	$"%ExitButton".grab_focus()

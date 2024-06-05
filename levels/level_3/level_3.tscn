@@ -1,19 +1,63 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://levels/level_3/level_3.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://levels/common/assets/shadow_tileset.png" type="Texture" id=3]
+[ext_resource path="res://levels/common/eye.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
-points = PoolVector2Array( 64, 64, 0, 64, 0.716736, 1.05162, 63.6775, 0.716721 )
+points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+points = PoolVector2Array( 0, 0.94503, 64, 1.00317, 64, 64, 0, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+points = PoolVector2Array( 0, 1.1776, 64, 1.1776, 64, 64, 0, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
+points = PoolVector2Array( 0.647751, 0.850693, 64, 0.930695, 64, 64, 0.782181, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=8]
+points = PoolVector2Array( 0, 1.09183, 64, 1.09183, 64, 64, 0, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=9]
+points = PoolVector2Array( 0, 1.09183, 63.0693, 1.16325, 63.0693, 63.9566, 0, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=10]
+points = PoolVector2Array( 1.06126, 0, 64, 0, 64, 64, 1.06126, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=11]
+points = PoolVector2Array( 0, 0, 62.8367, 0, 62.8367, 64, 0, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=12]
+points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=13]
+points = PoolVector2Array( 0.753738, 0, 64, 0, 64, 62.9387, 0.753738, 62.8367 )
+
+[sub_resource type="ConvexPolygonShape2D" id=14]
+points = PoolVector2Array( 0, 0, 64, 0, 64, 62.8367, 0, 62.8367 )
+
+[sub_resource type="ConvexPolygonShape2D" id=15]
+points = PoolVector2Array( 0, 0, 62.8367, 0, 62.8367, 62.8367, 0, 62.8367 )
 
 [sub_resource type="TileSet" id=2]
-0/name = "icon.png 0"
+0/name = "shadow_tileset.png 0"
 0/texture = ExtResource( 3 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 64, 64 )
-0/tile_mode = 0
+0/region = Rect2( 0, 0, 320, 192 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 64, 64 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
 0/occluder_offset = Vector2( 0, 0 )
 0/navigation_offset = Vector2( 0, 0 )
 0/shape_offset = Vector2( 0, 0 )
@@ -27,27 +71,128 @@ points = PoolVector2Array( 64, 64, 0, 64, 0.716736, 1.05162, 63.6775, 0.716721 )
 "one_way_margin": 1.0,
 "shape": SubResource( 3 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 4 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 5 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 6 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 7 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 8 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 4, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 9 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 10 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 4, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 11 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 1 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 12 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 13 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 14 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 4, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 15 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
+1/name = "shadow_tileset.png 1"
+1/texture = ExtResource( 3 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 128, 0, 192, 192 )
+1/tile_mode = 2
+1/autotile/icon_coordinate = Vector2( 0, 0 )
+1/autotile/tile_size = Vector2( 64, 64 )
+1/autotile/spacing = 0
+1/autotile/occluder_map = [  ]
+1/autotile/navpoly_map = [  ]
+1/autotile/priority_map = [  ]
+1/autotile/z_index_map = [  ]
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
+scene_name = "level3"
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 640.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2( 0, -1 )
+position = Vector2( -1, -1 )
 tile_set = SubResource( 2 )
 show_collision = true
 collision_use_kinematic = true
 collision_bounce = 1.0
 format = 1
-tile_data = PoolIntArray( 0, 0, 0, 15, 0, 0, 65536, 0, 0, 65551, 0, 0, 131072, 0, 0, 131087, 0, 0, 196608, 0, 0, 196623, 0, 0, 262144, 0, 0, 262159, 0, 0, 327680, 0, 0, 327695, 0, 0, 393216, 0, 0, 393231, 0, 0, 458752, 0, 0, 458767, 0, 0, 524288, 0, 0, 524303, 0, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 589839, 0, 0 )
+tile_data = PoolIntArray( 0, 0, 65540, 15, 0, 65538, 65536, 0, 65540, 65551, 0, 65538, 131072, 0, 65540, 131087, 0, 65538, 196608, 0, 65540, 196623, 0, 65538, 262144, 0, 65540, 262159, 0, 65538, 327680, 0, 65540, 327695, 0, 65538, 393216, 0, 65540, 393231, 0, 65538, 458752, 0, 65540, 458767, 0, 65538, 524288, 0, 65540, 524303, 0, 65538, 589824, 0, 65536, 589825, 0, 3, 589826, 0, 3, 589827, 0, 3, 589828, 0, 3, 589829, 0, 3, 589830, 0, 3, 589831, 0, 3, 589832, 0, 3, 589833, 0, 3, 589834, 0, 3, 589835, 0, 3, 589836, 0, 3, 589837, 0, 3, 589838, 0, 3, 589839, 0, 65537 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 unique_name_in_owner = true
-position = Vector2( 544, 544 )
-__meta__ = {
-"_edit_group_": true
-}
+position = Vector2( 480, 544 )
+z_index = 1
 
 [node name="BlockSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -58,5 +203,33 @@ autostart = true
 unique_name_in_owner = true
 autostart = true
 
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Eye1" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 840, 360 )
+scale = Vector2( 0.75, 0.75 )
+
+[node name="Eye2" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 544, 136 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Eye4" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 384, 280 )
+
+[node name="Eye3" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 768, 200 )
+
+[node name="Eye5" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 192, 144 )
+
+[node name="Eye6" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 216, 456 )
+scale = Vector2( 0.75, 0.75 )
+
+[node name="Eye7" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 640, 448 )
+scale = Vector2( 0.5, 0.5 )
+
+[connection signal="trapped" from="Player" to="." method="_on_Player_trapped"]
 [connection signal="timeout" from="BlockSpawnTimer" to="." method="_on_BlockSpawnTimer_timeout"]
 [connection signal="timeout" from="BlockFallTimer" to="." method="_on_BlockFallTimer_timeout"]

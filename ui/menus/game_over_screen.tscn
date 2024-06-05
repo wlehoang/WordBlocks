@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://resources/fonts/DarkDepths.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/menus/game_over_screen.gd" type="Script" id=2]
 [ext_resource path="res://resources/themes/button_theme.tres" type="Theme" id=3]
+[ext_resource path="res://resources/fonts/PixeloidMono.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
@@ -20,13 +21,13 @@ outline_color = Color( 0.54902, 0, 0.137255, 1 )
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=4]
-font_data = ExtResource( 1 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=5]
-font_data = ExtResource( 1 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=6]
-font_data = ExtResource( 1 )
+font_data = ExtResource( 4 )
 
 [node name="GameOverScreen" type="CanvasLayer"]
 pause_mode = 2
@@ -51,53 +52,52 @@ custom_constants/separation = 60
 alignment = 1
 
 [node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 193.0
+margin_top = 190.0
 margin_right = 1014.0
-margin_bottom = 265.0
+margin_bottom = 262.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme = SubResource( 2 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.54902, 0, 0.137255, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "GAME OVER"
 align = 1
 valign = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 325.0
+margin_top = 322.0
 margin_right = 1014.0
-margin_bottom = 397.0
+margin_bottom = 400.0
 
 [node name="ButtonRows" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
-margin_left = 447.0
-margin_right = 566.0
-margin_bottom = 72.0
+margin_left = 451.0
+margin_right = 562.0
+margin_bottom = 78.0
 custom_constants/separation = 0
 
 [node name="RestartButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
-margin_right = 119.0
-margin_bottom = 24.0
+margin_right = 111.0
+margin_bottom = 26.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 4 )
 text = "RESTART"
 
 [node name="MainMenuButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
-margin_top = 24.0
-margin_right = 119.0
-margin_bottom = 48.0
+margin_top = 26.0
+margin_right = 111.0
+margin_bottom = 52.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 5 )
 text = "MAIN MENU"
 
 [node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
-margin_top = 48.0
-margin_right = 119.0
-margin_bottom = 72.0
+margin_top = 52.0
+margin_right = 111.0
+margin_bottom = 78.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 6 )
 text = "QUIT"

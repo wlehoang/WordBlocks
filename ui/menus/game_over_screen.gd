@@ -1,7 +1,8 @@
 extends CanvasLayer
 
 export (String) var scene_name
-signal scene_changed(scene_name)
+signal scene_changed(new_scene)
+var current_level
 
 func _ready() -> void:
 	$"%RestartButton".grab_focus()
@@ -9,11 +10,12 @@ func _ready() -> void:
 
 func _on_RestartButton_pressed():
 	get_tree().paused = false
-	emit_signal("scene_changed", scene_name)
+	emit_signal("scene_changed", current_level)
+	print(current_level)
 
 func _on_MainMenuButton_pressed():
 	get_tree().paused = false
-	emit_signal("scene_changed", scene_name)
+	emit_signal("scene_changed", "main")
 
 func _on_QuitButton_pressed():
 	get_tree().quit()

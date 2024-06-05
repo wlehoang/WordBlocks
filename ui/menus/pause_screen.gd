@@ -1,7 +1,8 @@
 extends CanvasLayer
 
 export (String) var scene_name
-signal scene_changed(scene_name)
+signal scene_changed(new_scene)
+var paused_scene
 
 func _ready() -> void:
 	$"%ContinueButton".grab_focus()
@@ -18,16 +19,16 @@ func _on_ContinueButton_pressed():
 
 func _on_RestartButton_pressed():
 	get_tree().paused = false
-	emit_signal("scene_changed", scene_name)
+	emit_signal("scene_changed", paused_scene)
 	queue_free()
 	
 func _on_MainMenuButton_pressed():
 	get_tree().paused = false
-	emit_signal("scene_changed", scene_name)
+	emit_signal("scene_changed", "main")
 	queue_free()
 
-func _on_SettingsButton_pressed():
-	pass # Replace with function body.
+func _on_OptionsButton_pressed():
+	pass
 
 func _on_QuitButton_pressed():
 	get_tree().quit()
@@ -41,8 +42,8 @@ func _on_RestartButton_mouse_entered():
 func _on_MainMenuButton_mouse_entered():
 	$"%MainMenuButton".grab_focus()
 
-func _on_SettingsButton_mouse_entered():
-	$"%SettingsButton".grab_focus()
+func _on_OptionsButton_mouse_entered():
+	$"%OptionsButton".grab_focus()
 
 func _on_QuitButton_mouse_entered():
 	$"%QuitButton".grab_focus()

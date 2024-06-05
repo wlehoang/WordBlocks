@@ -148,8 +148,8 @@ margin_bottom = 334.0
 mouse_filter = 2
 
 [node name="ButtonRows" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
-margin_left = 452.0
-margin_right = 552.0
+margin_left = 457.0
+margin_right = 546.0
 margin_bottom = 88.0
 mouse_filter = 2
 custom_constants/separation = 5
@@ -157,25 +157,25 @@ alignment = 1
 
 [node name="StartButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
-margin_right = 100.0
+margin_right = 89.0
 margin_bottom = 26.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 7 )
 text = "START"
 
-[node name="SettingsButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
+[node name="OptionsButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
 margin_top = 31.0
-margin_right = 100.0
+margin_right = 89.0
 margin_bottom = 57.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 7 )
-text = "SETTINGS"
+text = "OPTIONS"
 
 [node name="ExitButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
 margin_top = 62.0
-margin_right = 100.0
+margin_right = 89.0
 margin_bottom = 88.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 8 )
@@ -275,8 +275,8 @@ z_index = 2
 
 [connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/StartButton" to="." method="_on_StartButton_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/StartButton" to="." method="_on_StartButton_pressed"]
-[connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/SettingsButton" to="." method="_on_SettingsButton_mouse_entered"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/SettingsButton" to="." method="_on_SettingsButton_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/OptionsButton" to="." method="_on_OptionsButton_mouse_entered"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/ExitButton" to="." method="_on_ExitButton_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/ExitButton" to="." method="_on_ExitButton_pressed"]
 [connection signal="mouse_entered" from="PrincessArea" to="." method="_on_PrincessArea_mouse_entered"]

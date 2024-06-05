@@ -10,6 +10,8 @@ var tile_size
 var inventory = -1
 var gravity = 1000
 
+signal trapped
+
 func _ready():
 	tile_size = get_parent().tile_size
 	facing.cast_to = Vector2(tile_size, 0)
@@ -40,6 +42,7 @@ func _unhandled_input(event):
 				inventory = all_selected[0].block_type
 				all_selected[0].queue_free()
 				print("block picked up: " + str(inventory))
+				$HeldBlock.handle_block_animation(inventory)
 		else:
 			if not facing.is_colliding():
 				print("block dropped: " + str(inventory))
@@ -49,6 +52,7 @@ func _unhandled_input(event):
 				dropped_block.select_block_type(inventory)
 				get_parent().add_child(dropped_block)
 				inventory = -1
+				$HeldBlock.handle_block_animation(inventory)
 			else:
 				var collider = facing.get_collider()
 				if collider.is_in_group("block"):
@@ -56,6 +60,7 @@ func _unhandled_input(event):
 					print("block swapped: " + str(inventory) + " for " + str(sel_block))
 					collider.select_block_type(inventory)
 					inventory = sel_block
+					$HeldBlock.handle_block_animation(inventory)
 
 func handle_selection_area(area: String):
 	if area == "up":
@@ -102,8 +107,8 @@ func handle_jump():
 	var scale_height = 1.01
 	pos_delta.y -= (tile_size * scale_height)
 	if is_on_floor():
-		var collision = move_and_collide(pos_delta)
 		$AnimatedSprite.play(player_name + "_jump_" + direction)
+		var collision = move_and_collide(pos_delta)
 
 func _on_SelectionArea_body_entered(body):
 	if body.is_in_group("block"):
@@ -115,3 +120,10 @@ func _on_SelectionArea_body_exited(body):
 
 func _on_AnimatedSprite_animation_finished():
 	$AnimatedSprite.play(player_name + "_idle_" + direction)
+
+func _on_TrappedCheckTimer_timeout():
+	if inventory != -1:
+		if test_move(transform, Vector2(0, -tile_size)) and test_move(transform, Vector2(-tile_size, 0)) and test_move(transform, Vector2(tile_size, 0)):
+			$AnimatedSprite.play(player_name + "_death_" + direction)
+			yield($AnimatedSprite, "animation_finished")
+			emit_signal("trapped")
