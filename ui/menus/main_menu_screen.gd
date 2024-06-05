@@ -20,6 +20,7 @@ func _ready():
 		block.position = Vector2(i*block_size + x_offset + block_size/2, y_offset)
 		add_child(block)
 	handle_character_select()
+	$Eye.get_node("AnimatedSprite").play("blink_cat")
 	
 func handle_character_select():
 	match selected_character:

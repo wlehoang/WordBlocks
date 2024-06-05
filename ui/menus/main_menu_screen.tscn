@@ -194,7 +194,6 @@ z_index = 2
 unique_name_in_owner = true
 frames = SubResource( 13 )
 animation = "idle"
-frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PrincessArea"]
@@ -218,6 +217,7 @@ z_index = 2
 unique_name_in_owner = true
 frames = SubResource( 18 )
 animation = "idle"
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KnightArea"]
@@ -241,7 +241,6 @@ z_index = 2
 unique_name_in_owner = true
 frames = SubResource( 23 )
 animation = "idle"
-frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WizardArea"]

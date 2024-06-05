@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://levels/level_1/level_1.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://levels/common/assets/shadow_tileset.png" type="Texture" id=3]
+[ext_resource path="res://levels/common/eye.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -191,6 +192,7 @@ tile_data = PoolIntArray( 0, 0, 65540, 15, 0, 65538, 65536, 0, 65540, 65551, 0, 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 unique_name_in_owner = true
 position = Vector2( 480, 544 )
+z_index = 1
 
 [node name="BlockSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -200,6 +202,33 @@ autostart = true
 [node name="BlockFallTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 autostart = true
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Eye1" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 840, 360 )
+scale = Vector2( 0.75, 0.75 )
+
+[node name="Eye2" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 544, 136 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Eye4" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 384, 280 )
+
+[node name="Eye3" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 768, 200 )
+
+[node name="Eye5" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 192, 144 )
+
+[node name="Eye6" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 216, 456 )
+scale = Vector2( 0.75, 0.75 )
+
+[node name="Eye7" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 640, 448 )
+scale = Vector2( 0.5, 0.5 )
 
 [connection signal="timeout" from="BlockSpawnTimer" to="." method="_on_BlockSpawnTimer_timeout"]
 [connection signal="timeout" from="BlockFallTimer" to="." method="_on_BlockFallTimer_timeout"]
