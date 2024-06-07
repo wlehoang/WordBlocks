@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/easyMode.mp3-37b5d3406c6d55f33a88c71f5158f31b.mp3str"
+
+[deps]
+
+source_file="res://resources/music/easyMode.mp3"
+dest_files=[ "res://.import/easyMode.mp3-37b5d3406c6d55f33a88c71f5158f31b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
