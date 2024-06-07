@@ -20,6 +20,7 @@ Globals="*res://autoloads/globals.tscn"
 
 [display]
 
+window/size/height=832
 window/stretch/mode="viewport"
 
 [gui]

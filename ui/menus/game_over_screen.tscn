@@ -43,18 +43,18 @@ custom_styles/panel = SubResource( 1 )
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 1019.0
-margin_bottom = 595.0
+margin_bottom = 827.0
 
 [node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 margin_right = 1014.0
-margin_bottom = 590.0
+margin_bottom = 822.0
 custom_constants/separation = 60
 alignment = 1
 
 [node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 190.0
+margin_top = 310.0
 margin_right = 1014.0
-margin_bottom = 262.0
+margin_bottom = 382.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme = SubResource( 2 )
@@ -66,38 +66,38 @@ align = 1
 valign = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 322.0
+margin_top = 442.0
 margin_right = 1014.0
-margin_bottom = 400.0
+margin_bottom = 512.0
 
 [node name="ButtonRows" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
-margin_left = 451.0
-margin_right = 562.0
-margin_bottom = 78.0
-custom_constants/separation = 0
+margin_left = 457.0
+margin_right = 556.0
+margin_bottom = 70.0
+custom_constants/separation = 5
 
 [node name="RestartButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
-margin_right = 111.0
-margin_bottom = 26.0
+margin_right = 99.0
+margin_bottom = 20.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 4 )
 text = "RESTART"
 
 [node name="MainMenuButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
-margin_top = 26.0
-margin_right = 111.0
-margin_bottom = 52.0
+margin_top = 25.0
+margin_right = 99.0
+margin_bottom = 45.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 5 )
 text = "MAIN MENU"
 
 [node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
-margin_top = 52.0
-margin_right = 111.0
-margin_bottom = 78.0
+margin_top = 50.0
+margin_right = 99.0
+margin_bottom = 70.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 6 )
 text = "QUIT"

@@ -14,7 +14,7 @@ func _ready():
 
 func handle_block_spawn(column):
 	var block = Blocks.instance()
-	block.position = (Vector2((column + 1.5) * tile_size, -tile_size / 2))
+	block.position = (Vector2((column + 1.5) * tile_size, tile_size + tile_size/2))
 	block.select_block_type()
 	add_child(block)
 
