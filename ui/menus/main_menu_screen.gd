@@ -71,7 +71,7 @@ func _on_StartButton_pressed():
 	emit_signal("scene_changed", level)
 
 func _on_OptionsButton_pressed():
-	pass
+	$"%OptionsMenu".show()
 
 func _on_ExitButton_pressed():
 	get_tree().quit()

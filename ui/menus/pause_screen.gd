@@ -28,7 +28,7 @@ func _on_MainMenuButton_pressed():
 	queue_free()
 
 func _on_OptionsButton_pressed():
-	pass
+	$"%OptionsMenu".show()
 
 func _on_QuitButton_pressed():
 	get_tree().quit()

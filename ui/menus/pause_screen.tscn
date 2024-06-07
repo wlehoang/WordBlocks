@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://resources/fonts/PixeloidSans-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/menus/pause_screen.gd" type="Script" id=2]
 [ext_resource path="res://resources/themes/button_theme.tres" type="Theme" id=3]
 [ext_resource path="res://resources/fonts/PixeloidMono.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://ui/menus/options_screen.tscn" type="PackedScene" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
@@ -61,9 +62,9 @@ custom_constants/separation = 10
 alignment = 1
 
 [node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 16.0
+margin_top = 31.0
 margin_right = 364.0
-margin_bottom = 60.0
+margin_bottom = 75.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme = SubResource( 2 )
@@ -77,63 +78,69 @@ valign = 1
 uppercase = true
 
 [node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 70.0
+margin_top = 85.0
 margin_right = 364.0
-margin_bottom = 220.0
+margin_bottom = 205.0
 
 [node name="ButtonRows" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
-margin_left = 126.0
-margin_right = 237.0
-margin_bottom = 150.0
+margin_left = 132.0
+margin_right = 231.0
+margin_bottom = 120.0
 theme = ExtResource( 3 )
 custom_constants/separation = 5
 
 [node name="ContinueButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
-margin_right = 111.0
-margin_bottom = 26.0
+margin_right = 99.0
+margin_bottom = 20.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 4 )
 text = "CONTINUE"
 
 [node name="RestartButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
-margin_top = 31.0
-margin_right = 111.0
-margin_bottom = 57.0
+margin_top = 25.0
+margin_right = 99.0
+margin_bottom = 45.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 5 )
 text = "RESTART"
 
 [node name="MainMenuButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
-margin_top = 62.0
-margin_right = 111.0
-margin_bottom = 88.0
+margin_top = 50.0
+margin_right = 99.0
+margin_bottom = 70.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 6 )
 text = "MAIN MENU"
 
 [node name="OptionsButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
-margin_top = 93.0
-margin_right = 111.0
-margin_bottom = 119.0
+margin_top = 75.0
+margin_right = 99.0
+margin_bottom = 95.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 7 )
 text = "OPTIONS"
 
 [node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
-margin_top = 124.0
-margin_right = 111.0
-margin_bottom = 150.0
+margin_top = 100.0
+margin_right = 99.0
+margin_bottom = 120.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 8 )
 text = "QUIT"
 
 [node name="PauseMusic" type="AudioStreamPlayer" parent="."]
 autoplay = true
+
+[node name="OptionsLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="OptionsMenu" parent="OptionsLayer" instance=ExtResource( 5 )]
+unique_name_in_owner = true
 
 [connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/ContinueButton" to="." method="_on_ContinueButton_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/ContinueButton" to="." method="_on_ContinueButton_pressed"]

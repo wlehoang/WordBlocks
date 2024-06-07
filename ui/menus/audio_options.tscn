@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://resources/fonts/PixeloidSans.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://ui/menus/audio_options.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[node name="Audio" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 2 )
+bus_name = "Master"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="AudioNameLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+margin_top = 5.0
+margin_right = 200.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 200, 30 )
+custom_fonts/font = SubResource( 1 )
+text = "Window Mode"
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+margin_left = 204.0
+margin_right = 454.0
+margin_bottom = 40.0
+custom_constants/separation = 250
+custom_styles/separator = SubResource( 4 )
+
+[node name="AudioSlider" type="HSlider" parent="HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 458.0
+margin_right = 608.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 150, 40 )
+rect_clip_content = true
+
+[node name="VSeparator2" type="VSeparator" parent="HBoxContainer"]
+margin_left = 612.0
+margin_right = 662.0
+margin_bottom = 40.0
+custom_constants/separation = 50
+custom_styles/separator = SubResource( 3 )
+
+[node name="AudioNumberLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 666.0
+margin_top = 5.0
+margin_right = 866.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 200, 30 )
+custom_fonts/font = SubResource( 1 )
+text = "Window Mode"
