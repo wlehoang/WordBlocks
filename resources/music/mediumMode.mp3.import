@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/mediumMode.mp3-f6966ef5b68d3f6c2a50dfc9c887d640.mp3str"
+
+[deps]
+
+source_file="res://resources/music/mediumMode.mp3"
+dest_files=[ "res://.import/mediumMode.mp3-f6966ef5b68d3f6c2a50dfc9c887d640.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
