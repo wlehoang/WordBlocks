@@ -1,12 +1,297 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://ui/menus/options_screen.gd" type="Script" id=1]
+[ext_resource path="res://resources/fonts/PixeloidSans-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://ui/menus/hotkey_rebind.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/menus/display_options.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/menus/audio_options.tscn" type="PackedScene" id=5]
+[ext_resource path="res://resources/fonts/PixeloidSans.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://resources/themes/button_theme.tres" type="Theme" id=7]
 
-[node name="settings_screen" type="Control"]
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.164706, 0, 0.482353, 1 )
+border_width_left = 20
+border_width_right = 20
+border_color = Color( 0.164706, 0, 0.482353, 1 )
+shadow_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.105882, 0, 0.305882, 1 )
+border_width_left = 10
+border_width_right = 10
+border_color = Color( 0.105882, 0, 0.305882, 1 )
+shadow_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0.164706, 0, 0.482353, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="DynamicFont" id=8]
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=9]
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=10]
+font_data = ExtResource( 6 )
+
+[node name="OptionsMenu" type="Popup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+scene_name = "options"
 
-[node name="TabContainer" type="TabContainer" parent="."]
+[node name="Background" type="ColorRect" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 80.0
+margin_top = 40.0
+margin_right = -80.0
+margin_bottom = -40.0
+
+[node name="Tabs" type="TabContainer" parent="MarginContainer"]
+margin_right = 864.0
+margin_bottom = 520.0
+custom_fonts/font = SubResource( 1 )
+custom_styles/tab_fg = SubResource( 5 )
+custom_styles/tab_bg = SubResource( 6 )
+custom_styles/panel = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Video" type="Tabs" parent="MarginContainer/Tabs"]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 50.0
+margin_right = -10.0
+margin_bottom = -10.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Tabs/Video"]
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/Tabs/Video/MarginContainer"]
+margin_right = 750.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 750, 400 )
+size_flags_horizontal = 2
+size_flags_vertical = 2
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Tabs/Video/MarginContainer/ScrollContainer"]
+margin_right = 698.0
+margin_bottom = 171.0
+custom_constants/separation = 45
+
+[node name="HSeparatorTop" type="HSeparator" parent="MarginContainer/Tabs/Video/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_right = 94.0
+margin_bottom = 8.0
+custom_constants/separation = 8
+custom_styles/separator = SubResource( 7 )
+
+[node name="DisplayOptions" parent="MarginContainer/Tabs/Video/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_bottom = 0.0
+margin_top = 68.0
+margin_right = 94.0
+margin_bottom = 68.0
+
+[node name="HSeparatorBottom" type="HSeparator" parent="MarginContainer/Tabs/Video/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 128.0
+margin_right = 94.0
+margin_bottom = 136.0
+custom_constants/separation = 8
+custom_styles/separator = SubResource( 7 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Tabs/Video/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_right = 698.0
+margin_bottom = 40.0
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/Tabs/Video/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_right = 4.0
+margin_bottom = 40.0
+custom_constants/separation = 600
+custom_styles/separator = SubResource( 11 )
+
+[node name="ExitButton1" type="Button" parent="MarginContainer/Tabs/Video/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_right = 100.0
+margin_bottom = 30.0
+theme = ExtResource( 7 )
+custom_fonts/font = SubResource( 8 )
+text = "EXIT MENU"
+
+[node name="Audio" type="Tabs" parent="MarginContainer/Tabs"]
+unique_name_in_owner = true
+visible = false
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+margin_left = 10.0
+margin_top = 50.0
+margin_right = -10.0
+margin_bottom = -10.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Tabs/Audio"]
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/Tabs/Audio/MarginContainer"]
+margin_right = 750.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 750, 400 )
+follow_focus = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Tabs/Audio/MarginContainer/ScrollContainer"]
+margin_right = 698.0
+margin_bottom = 261.0
+custom_constants/separation = 45
+
+[node name="HSeparatorTop" type="HSeparator" parent="MarginContainer/Tabs/Audio/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_right = 3.0
+margin_bottom = 16.0
+custom_constants/separation = 8
+custom_styles/separator = SubResource( 7 )
+
+[node name="MasterAudio" parent="MarginContainer/Tabs/Audio/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
+
+[node name="MusicAudio" parent="MarginContainer/Tabs/Audio/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
+bus_name = "Music"
+
+[node name="SfxAudio" parent="MarginContainer/Tabs/Audio/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 5 )]
+bus_name = "Sfx"
+
+[node name="HSeparatorBottom" type="HSeparator" parent="MarginContainer/Tabs/Audio/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 20.0
+margin_right = 3.0
+margin_bottom = 36.0
+custom_constants/separation = 8
+custom_styles/separator = SubResource( 7 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Tabs/Audio/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_right = 698.0
+margin_bottom = 40.0
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/Tabs/Audio/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_right = 4.0
+margin_bottom = 40.0
+custom_constants/separation = 600
+custom_styles/separator = SubResource( 11 )
+
+[node name="ExitButton2" type="Button" parent="MarginContainer/Tabs/Audio/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_right = 100.0
+margin_bottom = 30.0
+theme = ExtResource( 7 )
+custom_fonts/font = SubResource( 9 )
+text = "EXIT MENU"
+
+[node name="Controls" type="Tabs" parent="MarginContainer/Tabs"]
+unique_name_in_owner = true
+visible = false
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+margin_left = 10.0
+margin_top = 50.0
+margin_right = -10.0
+margin_bottom = -10.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Tabs/Controls"]
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/Tabs/Controls/MarginContainer"]
+margin_right = 681.0
+margin_bottom = 367.0
+follow_focus = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Tabs/Controls/MarginContainer/ScrollContainer"]
+margin_right = 698.0
+margin_bottom = 441.0
+custom_constants/separation = 45
+
+[node name="HSeparatorTop" type="HSeparator" parent="MarginContainer/Tabs/Controls/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_right = 3.0
+margin_bottom = 16.0
+custom_constants/separation = 8
+custom_styles/separator = SubResource( 7 )
+
+[node name="HotkeyRebindMoveLeft" parent="MarginContainer/Tabs/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 3 )]
+
+[node name="HotkeyRebindMoveRight" parent="MarginContainer/Tabs/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 3 )]
+action_name = "move_right"
+
+[node name="HotkeyRebindSelLeft" parent="MarginContainer/Tabs/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 3 )]
+action_name = "select_left"
+
+[node name="HotkeyRebindSelRight" parent="MarginContainer/Tabs/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 3 )]
+action_name = "select_right"
+
+[node name="HotkeyRebindSelUp" parent="MarginContainer/Tabs/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 3 )]
+action_name = "select_up"
+
+[node name="HotkeyRebindSelDown" parent="MarginContainer/Tabs/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 3 )]
+action_name = "select_down"
+
+[node name="HotkeyRebindPickupDrop" parent="MarginContainer/Tabs/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 3 )]
+action_name = "pickup_or_drop"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Tabs/Controls/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_right = 698.0
+margin_bottom = 40.0
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/Tabs/Controls/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_right = 4.0
+margin_bottom = 40.0
+custom_constants/separation = 600
+custom_styles/separator = SubResource( 11 )
+
+[node name="ExitButton3" type="Button" parent="MarginContainer/Tabs/Controls/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_right = 100.0
+margin_bottom = 30.0
+theme = ExtResource( 7 )
+custom_fonts/font = SubResource( 10 )
+text = "EXIT MENU"
+
+[node name="HSeparatorBottom" type="HSeparator" parent="MarginContainer/Tabs/Controls/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 20.0
+margin_right = 3.0
+margin_bottom = 36.0
+custom_constants/separation = 8
+custom_styles/separator = SubResource( 7 )
+
+[connection signal="pressed" from="MarginContainer/Tabs/Video/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/ExitButton1" to="." method="_on_ExitButton1_pressed"]
+[connection signal="pressed" from="MarginContainer/Tabs/Audio/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/ExitButton2" to="." method="_on_ExitButton2_pressed"]
+[connection signal="pressed" from="MarginContainer/Tabs/Controls/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/ExitButton3" to="." method="_on_ExitButton3_pressed"]
