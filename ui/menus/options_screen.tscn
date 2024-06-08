@@ -69,7 +69,7 @@ margin_bottom = -40.0
 
 [node name="Tabs" type="TabContainer" parent="MarginContainer"]
 margin_right = 864.0
-margin_bottom = 520.0
+margin_bottom = 752.0
 custom_fonts/font = SubResource( 1 )
 custom_styles/tab_fg = SubResource( 5 )
 custom_styles/tab_bg = SubResource( 6 )
@@ -165,7 +165,7 @@ anchor_bottom = 0.95
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/Tabs/Audio/MarginContainer"]
 margin_right = 750.0
-margin_bottom = 400.0
+margin_bottom = 555.0
 rect_min_size = Vector2( 750, 400 )
 follow_focus = true
 
@@ -233,7 +233,7 @@ anchor_bottom = 0.95
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/Tabs/Controls/MarginContainer"]
 margin_right = 681.0
-margin_bottom = 367.0
+margin_bottom = 555.0
 follow_focus = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Tabs/Controls/MarginContainer/ScrollContainer"]

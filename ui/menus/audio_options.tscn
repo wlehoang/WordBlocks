@@ -43,6 +43,8 @@ margin_right = 608.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 150, 40 )
 rect_clip_content = true
+max_value = 1.0
+step = 0.01
 
 [node name="VSeparator2" type="VSeparator" parent="HBoxContainer"]
 margin_left = 612.0

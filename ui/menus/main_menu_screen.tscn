@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://resources/fonts/PixeloidMono.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/menus/main_menu_screen.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://ui/menus/options_screen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/assets/lit_floor.png" type="Texture" id=8]
 [ext_resource path="res://levels/common/eye.tscn" type="PackedScene" id=9]
+[ext_resource path="res://resources/music/titleScreen.mp3" type="AudioStream" id=10]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
@@ -184,9 +185,11 @@ custom_fonts/font = SubResource( 8 )
 text = "EXIT"
 
 [node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
 volume_db = -10.0
 autoplay = true
 mix_target = 1
+bus = "Music"
 
 [node name="PrincessArea" type="Area2D" parent="."]
 position = Vector2( 344, 480 )
@@ -197,7 +200,7 @@ z_index = 2
 unique_name_in_owner = true
 frames = SubResource( 13 )
 animation = "idle"
-frame = 3
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PrincessArea"]
@@ -221,7 +224,7 @@ z_index = 2
 unique_name_in_owner = true
 frames = SubResource( 18 )
 animation = "idle"
-frame = 1
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KnightArea"]
@@ -245,7 +248,7 @@ z_index = 2
 unique_name_in_owner = true
 frames = SubResource( 23 )
 animation = "idle"
-frame = 3
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WizardArea"]

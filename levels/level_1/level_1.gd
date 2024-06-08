@@ -45,3 +45,22 @@ func _on_MoveTimer_timeout():
 	
 func _on_Player_trapped():
 	emit_signal("scene_changed", "defeat")
+
+func _on_Player_bonus_time():
+	randomize()
+	ScoreTracker.score_multiplier = 1 + randi() % 3
+	$BonusTimer.start(30)
+	
+func _on_BonusTimer_timeout():
+	ScoreTracker.score_multiplier = 1
+
+func _on_Player_timestopped():
+	$BlockFallTimer.paused = true
+	$BlockSpawnTimer.paused = true
+	$MoveTimer.paused = true
+	$PauseTimer.start(15)
+
+func _on_PauseTimer_timeout():
+	$BlockFallTimer.paused = false
+	$BlockSpawnTimer.paused = false
+	$MoveTimer.paused = false

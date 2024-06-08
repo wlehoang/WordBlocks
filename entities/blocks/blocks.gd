@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-enum Types {Empty, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, Random, Bonus, Pause, Bomb, Locked, Sideways, Mystery}
+enum Types {Empty, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, Random, Bonus, Pause, Bomb, Locked, Mystery}
 export (String) var block_type = Types.Empty
 var selected = false
 
@@ -29,9 +29,9 @@ func sample_letter():
 		
 func select_block_type(block_number: int = -1):
 	if block_number == -1:
-		var chanceOfSpecialTile = 0.15
+		var chance_of_special_tile = 0.15
 		randomize()
-		if randf() < chanceOfSpecialTile:
+		if randf() < chance_of_special_tile:
 			block_number = 27 + randi() % 6
 		else:
 			block_number = sample_letter()
@@ -100,15 +100,9 @@ func select_block_type(block_number: int = -1):
 			animation_name = "block_clock"
 		Types.Bomb:
 			animation_name = "block_bomb"
+			$ExplosionTimer.start(10)
 		Types.Locked:
 			animation_name = "block_locked"
-		Types.Sideways:
-			randomize()
-			var left_or_right = randi() % 2
-			if left_or_right == 1:
-				animation_name = "block_left"
-			else:
-				animation_name = "block_right"
 		Types.Mystery:
 			animation_name = "block_mystery"
 	$AnimatedSprite.play(animation_name)
@@ -181,7 +175,7 @@ func detect_word():
 	if (left.get_overlapping_bodies().size() > 0 && "block_type" in left.get_overlapping_bodies()[0]):
 		return
 	var letter_chain = get_word_chain()
-	if letter_chain.length()>=4:
+	if letter_chain.length() >= 4:
 		var letter_indexes = check_letter_chain(letter_chain)
 		if letter_indexes.size() == 2:
 			pop_letter_chain(letter_indexes)
@@ -192,7 +186,7 @@ func get_word_chain():
 	while letter_reader != null:
 		word_chain += type_to_letter(letter_reader.block_type)
 		var right = letter_reader.get_node("Right")
-		if (right.get_overlapping_bodies().size()>0 && "block_type" in right.get_overlapping_bodies()[0]):
+		if (right.get_overlapping_bodies().size() > 0 && "block_type" in right.get_overlapping_bodies()[0]):
 			letter_reader = right.get_overlapping_bodies()[0]
 		else:
 			letter_reader = null
@@ -217,11 +211,11 @@ func pop_letter_chain(letter_indexes):
 	var letter_tracker = self
 	var letter_index = 0
 	while letter_tracker != null && letter_index < letter_indexes[1]:
-		if letter_index >= letter_indexes[0] && letter_index<letter_indexes[1]:
+		if letter_index >= letter_indexes[0] && letter_index < letter_indexes[1]:
 			letter_tracker.queue_free()
 		var right = letter_tracker.get_node("Right")
 		var collisions = right.get_overlapping_bodies()
-		if collisions.size()>0:
+		if collisions.size() > 0:
 			letter_tracker = collisions[0]
 		else:
 			letter_tracker = null
@@ -229,3 +223,14 @@ func pop_letter_chain(letter_indexes):
 
 func _on_ShowTimer_timeout():
 	show()
+
+func _on_ExplosionTimer_timeout():
+	if block_type == Types.Bomb:
+		var blast_zone = ["Up", "Down", "Left", "Right", "UpperRight", "LowerRight", "LowerLeft", "UpperLeft"]
+		for zone in blast_zone:
+			var area_node = get_node(zone)
+			var bodies = area_node.get_overlapping_bodies()
+			for body in bodies:
+				if body.is_in_group("block"):
+					body.queue_free()
+		queue_free()

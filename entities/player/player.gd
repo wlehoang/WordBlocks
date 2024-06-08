@@ -1,5 +1,5 @@
 extends KinematicBody2D
-
+enum BlockTypes {Empty, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, Random, Bonus, Pause, Bomb, Locked, Mystery}
 const Blocks = preload("res://entities/blocks/blocks.tscn")
 onready var facing = $FacingRayCast
 onready var selectionarea = $SelectionArea
@@ -9,8 +9,12 @@ export (String) var player_name = "princess"
 var tile_size
 var inventory = -1
 var gravity = 1000
+var buff = "none"
+var buff_duration = 30
 
 signal trapped
+signal timestopped
+signal bonus_time
 
 func _ready():
 	tile_size = Globals.tile_size
@@ -39,10 +43,15 @@ func _unhandled_input(event):
 		if inventory == -1:
 			var all_selected = get_tree().get_nodes_in_group("selected")
 			if all_selected.size() > 0:
-				inventory = all_selected[0].block_type
-				all_selected[0].queue_free()
-				print("block picked up: " + str(inventory))
-				$HeldBlock.handle_block_animation(inventory)
+				if all_selected[0].block_type != BlockTypes.Locked:
+					inventory = all_selected[0].block_type
+					all_selected[0].queue_free()
+					if buff == "all_bombs":
+						inventory = BlockTypes.Bomb
+					elif buff == "vacuum":
+						inventory = -1
+					print("block picked up: " + str(inventory))
+					handle_held_block_effect()
 		else:
 			if not facing.is_colliding():
 				print("block dropped: " + str(inventory))
@@ -52,6 +61,8 @@ func _unhandled_input(event):
 				dropped_block.select_block_type(inventory)
 				get_parent().add_child(dropped_block)
 				inventory = -1
+				if buff == "all_bombs":
+					inventory = BlockTypes.Bomb
 				$HeldBlock.handle_block_animation(inventory)
 			else:
 				var collider = facing.get_collider()
@@ -60,7 +71,11 @@ func _unhandled_input(event):
 					print("block swapped: " + str(inventory) + " for " + str(sel_block))
 					collider.select_block_type(inventory)
 					inventory = sel_block
-					$HeldBlock.handle_block_animation(inventory)
+					if buff == "all_bombs":
+						inventory = BlockTypes.Bomb
+					elif buff == "vacuum":
+						inventory = -1
+					handle_held_block_effect()
 
 func handle_selection_area(area: String):
 	if area == "up":
@@ -105,10 +120,35 @@ func handle_move(direction: String):
 func handle_jump():
 	var pos_delta = Vector2.ZERO
 	var scale_height = 1.01
-	pos_delta.y -= (tile_size * scale_height)
+	var jump_boost = 1
+	if buff == "jump_boost":
+		jump_boost = 2
+	pos_delta.y -= (tile_size * scale_height * jump_boost)
 	if is_on_floor():
 		$AnimatedSprite.play(player_name + "_jump_" + direction)
 		var collision = move_and_collide(pos_delta)
+		
+func handle_held_block_effect():
+	match inventory:
+		BlockTypes.Random:
+			randomize()
+			inventory = randi() % 26
+		BlockTypes.Bonus:
+			emit_signal("bonus_time")
+			inventory = -1
+		BlockTypes.Pause:
+			emit_signal("timestopped")
+			inventory = -1
+		BlockTypes.Mystery:
+			inventory = -1
+			randomize()
+			var effects = ["jump_boost", "all_bombs", "vacuum"]
+			buff = effects[randi() % effects.size()]
+			if buff == "all_bombs":
+				inventory = BlockTypes.Bomb
+			$BuffTimer.start(buff_duration)
+			print(buff)
+	$HeldBlock.handle_block_animation(inventory)
 
 func _on_SelectionArea_body_entered(body):
 	if body.is_in_group("block"):
@@ -127,3 +167,6 @@ func _on_TrappedCheckTimer_timeout():
 			$AnimatedSprite.play(player_name + "_death_" + direction)
 			yield($AnimatedSprite, "animation_finished")
 			emit_signal("trapped")
+
+func _on_BuffTimer_timeout():
+	buff = ""

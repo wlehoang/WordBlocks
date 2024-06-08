@@ -215,6 +215,14 @@ unique_name_in_owner = true
 wait_time = 0.75
 autostart = true
 
+[node name="PauseTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="BonusTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
 [node name="YSort" type="YSort" parent="."]
 position = Vector2( 0, 152 )
 
@@ -247,8 +255,13 @@ scale = Vector2( 0.5, 0.5 )
 stream = ExtResource( 5 )
 volume_db = -10.0
 autoplay = true
+bus = "Music"
 
+[connection signal="bonus_time" from="Player" to="." method="_on_Player_bonus_time"]
+[connection signal="timestopped" from="Player" to="." method="_on_Player_timestopped"]
 [connection signal="trapped" from="Player" to="." method="_on_Player_trapped"]
 [connection signal="timeout" from="BlockSpawnTimer" to="." method="_on_BlockSpawnTimer_timeout"]
 [connection signal="timeout" from="BlockFallTimer" to="." method="_on_BlockFallTimer_timeout"]
 [connection signal="timeout" from="MoveTimer" to="." method="_on_MoveTimer_timeout"]
+[connection signal="timeout" from="PauseTimer" to="." method="_on_PauseTimer_timeout"]
+[connection signal="timeout" from="BonusTimer" to="." method="_on_BonusTimer_timeout"]
