@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://levels/level_1/level_1.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://levels/common/eye.tscn" type="PackedScene" id=4]
 [ext_resource path="res://resources/music/easyMode.mp3" type="AudioStream" id=5]
 [ext_resource path="res://entities/mind_cat/mind_cat.tscn" type="PackedScene" id=6]
+[ext_resource path="res://levels/common/blood_splatter.tscn" type="PackedScene" id=7]
+[ext_resource path="res://levels/common/magic_symbols.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -193,7 +195,7 @@ tile_data = PoolIntArray( -196608, 0, 0, -196607, 0, 131075, -196606, 0, 131075,
 [node name="Player" parent="." instance=ExtResource( 2 )]
 unique_name_in_owner = true
 position = Vector2( 480, 736 )
-z_index = 1
+z_index = 5
 
 [node name="MindCat" parent="." instance=ExtResource( 6 )]
 position = Vector2( 520, 88 )
@@ -231,14 +233,14 @@ position = Vector2( 840, 360 )
 scale = Vector2( 0.75, 0.75 )
 
 [node name="Eye2" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 544, 136 )
+position = Vector2( 544, 120 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="Eye4" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 384, 280 )
 
 [node name="Eye3" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 768, 200 )
+position = Vector2( 768, 152 )
 
 [node name="Eye5" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 192, 144 )
@@ -249,6 +251,30 @@ scale = Vector2( 0.75, 0.75 )
 
 [node name="Eye7" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 640, 448 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="BloodSplatter1" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 680, 632 )
+scale = Vector2( 1.5, 0.75 )
+
+[node name="BloodSplatter2" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 192, 632 )
+scale = Vector2( 1.5, 0.75 )
+
+[node name="BloodSplatter3" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 880, 632 )
+scale = Vector2( 1.5, 0.75 )
+
+[node name="MagicSymbols1" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 368, 448 )
+scale = Vector2( 0.6, 0.6 )
+
+[node name="MagicSymbols2" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 680, 272 )
+scale = Vector2( 0.75, 0.75 )
+
+[node name="MagicSymbols3" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 360, 120 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]

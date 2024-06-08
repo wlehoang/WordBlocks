@@ -1262,7 +1262,7 @@ position = Vector2( 0, -7.99997 )
 scale = Vector2( 3.5, 3.25 )
 frames = SubResource( 59 )
 animation = "wizard_death_right"
-frame = 2
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

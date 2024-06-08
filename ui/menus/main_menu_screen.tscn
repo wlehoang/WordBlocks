@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://resources/fonts/PixeloidMono.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/menus/main_menu_screen.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://ui/assets/lit_floor.png" type="Texture" id=8]
 [ext_resource path="res://levels/common/eye.tscn" type="PackedScene" id=9]
 [ext_resource path="res://resources/music/titleScreen.mp3" type="AudioStream" id=10]
+[ext_resource path="res://resources/fonts/PixeloidSans.ttf" type="DynamicFontData" id=11]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
@@ -22,9 +23,11 @@ border_color = Color( 0.164706, 0, 0.482353, 1 )
 [sub_resource type="StyleBoxEmpty" id=27]
 
 [sub_resource type="DynamicFont" id=7]
+size = 20
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=8]
+size = 20
 font_data = ExtResource( 1 )
 
 [sub_resource type="AtlasTexture" id=9]
@@ -57,6 +60,10 @@ animations = [ {
 
 [sub_resource type="RectangleShape2D" id=24]
 extents = Vector2( 18.6667, 19.3333 )
+
+[sub_resource type="DynamicFont" id=28]
+size = 8
+font_data = ExtResource( 11 )
 
 [sub_resource type="AtlasTexture" id=14]
 flags = 4
@@ -153,7 +160,7 @@ custom_styles/separator = SubResource( 27 )
 [node name="ButtonRows" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows"]
 margin_top = 285.0
 margin_right = 1004.0
-margin_bottom = 355.0
+margin_bottom = 370.0
 mouse_filter = 2
 custom_constants/separation = 5
 alignment = 1
@@ -161,25 +168,25 @@ alignment = 1
 [node name="StartButton" type="Button" parent="PanelContainer/MarginContainer/Rows/ButtonRows"]
 unique_name_in_owner = true
 margin_right = 1004.0
-margin_bottom = 20.0
+margin_bottom = 25.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 7 )
 text = "START"
 
 [node name="OptionsButton" type="Button" parent="PanelContainer/MarginContainer/Rows/ButtonRows"]
 unique_name_in_owner = true
-margin_top = 25.0
+margin_top = 30.0
 margin_right = 1004.0
-margin_bottom = 45.0
+margin_bottom = 55.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 7 )
 text = "OPTIONS"
 
 [node name="ExitButton" type="Button" parent="PanelContainer/MarginContainer/Rows/ButtonRows"]
 unique_name_in_owner = true
-margin_top = 50.0
+margin_top = 60.0
 margin_right = 1004.0
-margin_bottom = 70.0
+margin_bottom = 85.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 8 )
 text = "EXIT"
@@ -196,11 +203,16 @@ position = Vector2( 344, 480 )
 scale = Vector2( 3, 3 )
 z_index = 2
 
+[node name="Floor1" type="Sprite" parent="PrincessArea"]
+position = Vector2( 0, -2.66666 )
+scale = Vector2( 0.333333, 0.333333 )
+texture = ExtResource( 8 )
+
 [node name="Princess" type="AnimatedSprite" parent="PrincessArea"]
 unique_name_in_owner = true
 frames = SubResource( 13 )
 animation = "idle"
-frame = 1
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PrincessArea"]
@@ -215,16 +227,35 @@ margin_bottom = 19.0
 mouse_filter = 2
 color = Color( 0, 0, 0, 0.54902 )
 
+[node name="VBoxContainer" type="VBoxContainer" parent="PrincessArea"]
+margin_left = -19.0
+margin_top = 21.0
+margin_right = 34.0
+margin_bottom = 79.0
+rect_scale = Vector2( 0.707129, 0.554671 )
+
+[node name="Label" type="Button" parent="PrincessArea/VBoxContainer"]
+margin_right = 53.0
+margin_bottom = 10.0
+theme = ExtResource( 3 )
+custom_fonts/font = SubResource( 28 )
+text = "PRINCESS"
+
 [node name="KnightArea" type="Area2D" parent="."]
 position = Vector2( 512, 480 )
 scale = Vector2( 3, 3 )
 z_index = 2
 
+[node name="Floor2" type="Sprite" parent="KnightArea"]
+position = Vector2( 0, -2.66666 )
+scale = Vector2( 0.333333, 0.333333 )
+texture = ExtResource( 8 )
+
 [node name="Knight" type="AnimatedSprite" parent="KnightArea"]
 unique_name_in_owner = true
 frames = SubResource( 18 )
 animation = "idle"
-frame = 3
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KnightArea"]
@@ -239,16 +270,35 @@ margin_bottom = 19.0
 mouse_filter = 2
 color = Color( 0, 0, 0, 0.54902 )
 
+[node name="VBoxContainer" type="VBoxContainer" parent="KnightArea"]
+margin_left = -19.0
+margin_top = 21.0
+margin_right = 34.0
+margin_bottom = 79.0
+rect_scale = Vector2( 0.707129, 0.554671 )
+
+[node name="Label" type="Button" parent="KnightArea/VBoxContainer"]
+margin_right = 53.0
+margin_bottom = 10.0
+theme = ExtResource( 3 )
+custom_fonts/font = SubResource( 28 )
+text = "KNIGHT"
+
 [node name="WizardArea" type="Area2D" parent="."]
 position = Vector2( 680, 480 )
 scale = Vector2( 3, 3 )
 z_index = 2
 
+[node name="Floor3" type="Sprite" parent="WizardArea"]
+position = Vector2( 0, -2.66666 )
+scale = Vector2( 0.333333, 0.333333 )
+texture = ExtResource( 8 )
+
 [node name="Wizard" type="AnimatedSprite" parent="WizardArea"]
 unique_name_in_owner = true
 frames = SubResource( 23 )
 animation = "idle"
-frame = 1
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WizardArea"]
@@ -263,17 +313,19 @@ margin_bottom = 19.0
 mouse_filter = 2
 color = Color( 0, 0, 0, 0.54902 )
 
-[node name="Floor1" type="Sprite" parent="."]
-position = Vector2( 344, 472 )
-texture = ExtResource( 8 )
+[node name="VBoxContainer" type="VBoxContainer" parent="WizardArea"]
+margin_left = -19.0
+margin_top = 21.0
+margin_right = 34.0
+margin_bottom = 79.0
+rect_scale = Vector2( 0.707129, 0.554671 )
 
-[node name="Floor2" type="Sprite" parent="."]
-position = Vector2( 512, 472 )
-texture = ExtResource( 8 )
-
-[node name="Floor3" type="Sprite" parent="."]
-position = Vector2( 680, 472 )
-texture = ExtResource( 8 )
+[node name="Label" type="Button" parent="WizardArea/VBoxContainer"]
+margin_right = 53.0
+margin_bottom = 10.0
+theme = ExtResource( 3 )
+custom_fonts/font = SubResource( 28 )
+text = "WIZARD"
 
 [node name="Eye" parent="." instance=ExtResource( 9 )]
 position = Vector2( 344, 424 )
