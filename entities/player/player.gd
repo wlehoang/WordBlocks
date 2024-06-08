@@ -13,7 +13,7 @@ var gravity = 1000
 signal trapped
 
 func _ready():
-	tile_size = get_parent().tile_size
+	tile_size = Globals.tile_size
 	facing.cast_to = Vector2(tile_size, 0)
 	add_to_group("player")
 

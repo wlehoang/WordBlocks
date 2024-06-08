@@ -11,7 +11,6 @@ func _ready() -> void:
 func _on_RestartButton_pressed():
 	get_tree().paused = false
 	emit_signal("scene_changed", current_level)
-	print(current_level)
 
 func _on_MainMenuButton_pressed():
 	get_tree().paused = false

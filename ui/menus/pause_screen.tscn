@@ -44,27 +44,27 @@ scene_name = "pause"
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 320.0
-margin_top = 192.0
+margin_top = 300.0
 margin_right = -320.0
-margin_bottom = -152.0
+margin_bottom = -200.0
 custom_styles/panel = SubResource( 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 374.0
-margin_bottom = 246.0
+margin_bottom = 322.0
 
 [node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 margin_right = 364.0
-margin_bottom = 236.0
+margin_bottom = 312.0
 custom_constants/separation = 10
 alignment = 1
 
 [node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 31.0
+margin_top = 69.0
 margin_right = 364.0
-margin_bottom = 75.0
+margin_bottom = 113.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme = SubResource( 2 )
@@ -78,9 +78,9 @@ valign = 1
 uppercase = true
 
 [node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 85.0
+margin_top = 123.0
 margin_right = 364.0
-margin_bottom = 205.0
+margin_bottom = 243.0
 
 [node name="ButtonRows" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
 margin_left = 132.0

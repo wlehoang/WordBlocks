@@ -10,7 +10,7 @@ func _ready():
 	
 func handle_block_fall():
 	var pos_delta = Vector2.ZERO
-	pos_delta.y += get_parent().tile_size;
+	pos_delta.y += Globals.tile_size;
 	if not test_move(transform, pos_delta):
 		var collision = move_and_collide(pos_delta)
 	detect_word()
@@ -178,18 +178,18 @@ func type_to_letter(type):
 func detect_word():
 	var left = get_node("Left")
 	var up = get_node("Up")
-	if (left.get_overlapping_bodies().size()>0 && "block_type" in left.get_overlapping_bodies()[0]):
+	if (left.get_overlapping_bodies().size() > 0 && "block_type" in left.get_overlapping_bodies()[0]):
 		return
 	var letter_chain = get_word_chain()
 	if letter_chain.length()>=4:
 		var letter_indexes = check_letter_chain(letter_chain)
-		if letter_indexes.size()==2:
+		if letter_indexes.size() == 2:
 			pop_letter_chain(letter_indexes)
 
 func get_word_chain():
 	var word_chain = ""
 	var letter_reader = self
-	while letter_reader!=null:
+	while letter_reader != null:
 		word_chain += type_to_letter(letter_reader.block_type)
 		var right = letter_reader.get_node("Right")
 		if (right.get_overlapping_bodies().size()>0 && "block_type" in right.get_overlapping_bodies()[0]):
@@ -216,8 +216,8 @@ func check_letter_chain(letter_chain):
 func pop_letter_chain(letter_indexes):
 	var letter_tracker = self
 	var letter_index = 0
-	while letter_tracker!=null && letter_index<letter_indexes[1]:
-		if letter_index>=letter_indexes[0] && letter_index<letter_indexes[1]:
+	while letter_tracker != null && letter_index < letter_indexes[1]:
+		if letter_index >= letter_indexes[0] && letter_index<letter_indexes[1]:
 			letter_tracker.queue_free()
 		var right = letter_tracker.get_node("Right")
 		var collisions = right.get_overlapping_bodies()
@@ -226,3 +226,6 @@ func pop_letter_chain(letter_indexes):
 		else:
 			letter_tracker = null
 		letter_index += 1
+
+func _on_ShowTimer_timeout():
+	show()

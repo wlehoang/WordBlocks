@@ -6,7 +6,6 @@
 [ext_resource path="res://entities/player/assets/princess.png" type="Texture" id=4]
 [ext_resource path="res://entities/player/assets/knight.png" type="Texture" id=5]
 [ext_resource path="res://entities/player/assets/wizard.png" type="Texture" id=6]
-[ext_resource path="res://resources/music/titleScreen.mp3" type="AudioStream" id=8]
 [ext_resource path="res://ui/menus/options_screen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/assets/lit_floor.png" type="Texture" id=8]
 [ext_resource path="res://levels/common/eye.tscn" type="PackedScene" id=9]
@@ -185,7 +184,6 @@ custom_fonts/font = SubResource( 8 )
 text = "EXIT"
 
 [node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
 volume_db = -10.0
 autoplay = true
 mix_target = 1
@@ -199,7 +197,7 @@ z_index = 2
 unique_name_in_owner = true
 frames = SubResource( 13 )
 animation = "idle"
-frame = 1
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PrincessArea"]
@@ -223,7 +221,7 @@ z_index = 2
 unique_name_in_owner = true
 frames = SubResource( 18 )
 animation = "idle"
-frame = 3
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KnightArea"]
@@ -247,7 +245,7 @@ z_index = 2
 unique_name_in_owner = true
 frames = SubResource( 23 )
 animation = "idle"
-frame = 1
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WizardArea"]

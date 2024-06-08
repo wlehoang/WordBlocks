@@ -43,20 +43,22 @@ func handle_character_select():
 
 func _input(event):
 	if event.is_action_pressed("select_right"):
-		if selected_character == "princess":
-			selected_character = "knight"
-		elif selected_character == "knight":
-			selected_character = "wizard"
-		elif selected_character == "wizard":
-			selected_character = "princess"
+		match selected_character:
+			"princess":
+				selected_character = "knight"
+			"knight":
+				selected_character = "wizard"
+			"wizard":
+				selected_character = "princess"
 		handle_character_select()
 	elif event.is_action_pressed("select_left"):
-		if selected_character == "princess":
-			selected_character = "wizard"
-		elif selected_character == "knight":
-			selected_character = "princess"
-		elif selected_character == "wizard":
-			selected_character = "knight"
+		match selected_character:
+			"princess":
+				selected_character = "wizard"
+			"knight":
+				selected_character = "princess"
+			"wizard":
+				selected_character = "knight"
 		handle_character_select()
 			
 func _on_StartButton_pressed():

@@ -1,13 +1,14 @@
 extends Node2D
 
 const Blocks = preload("res://entities/blocks/blocks.tscn")
-export (int) var tile_size = 64
 export (String) var scene_name
 onready var player_name = "wizard"
+var tile_size
 
 signal scene_changed(new_scene)
 
 func _ready():
+	tile_size = Globals.tile_size
 	add_to_group("map")
 	$Player.player_name = player_name
 	$Player/AnimatedSprite.play(player_name + "_idle_right")
