@@ -8,7 +8,7 @@
 script = ExtResource( 1 )
 
 [node name="MainMenuScreen" parent="." instance=ExtResource( 2 )]
-layer = 0
+layer = -1
 
 [node name="WordList" type="Node" parent="."]
 unique_name_in_owner = true

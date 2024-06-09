@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-onready var animation_player := $AnimationPlayer
+onready var animation_player := $"%TransitionAnimations"
 
 func _ready() -> void:
 	fade_out()

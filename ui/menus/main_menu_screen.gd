@@ -22,6 +22,7 @@ func _ready():
 		add_child(block)
 	handle_character_select()
 	$Eye.get_node("AnimatedSprite").play("blink_cat")
+	$Eye.rotation = 0
 	
 func handle_character_select():
 	match selected_character:

@@ -129,6 +129,7 @@ extents = Vector2( 18.6667, 19.3333 )
 
 [node name="MainMenuScreen" type="CanvasLayer"]
 pause_mode = 2
+layer = 0
 script = ExtResource( 2 )
 scene_name = "main"
 
@@ -212,7 +213,7 @@ texture = ExtResource( 8 )
 unique_name_in_owner = true
 frames = SubResource( 13 )
 animation = "idle"
-frame = 3
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PrincessArea"]
@@ -255,7 +256,7 @@ texture = ExtResource( 8 )
 unique_name_in_owner = true
 frames = SubResource( 18 )
 animation = "idle"
-frame = 1
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KnightArea"]
@@ -298,7 +299,7 @@ texture = ExtResource( 8 )
 unique_name_in_owner = true
 frames = SubResource( 23 )
 animation = "idle"
-frame = 3
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WizardArea"]
