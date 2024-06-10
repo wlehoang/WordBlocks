@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 enum Types {Empty, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, Random, Bonus, Pause, Bomb, Locked, Mystery}
 export (int) var block_type = Types.Empty
-var chance_of_special_tile = 0.5
+var chance_of_special_tile = 0.15
 var selected = false
 
 func _ready():

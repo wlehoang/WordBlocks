@@ -1305,6 +1305,7 @@ position = Vector2( 0, -7.99997 )
 scale = Vector2( 3.5, 3.25 )
 frames = SubResource( 59 )
 animation = "wizard_death_right"
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -1328,7 +1329,7 @@ visible = false
 scale = Vector2( 0.75, 0.5 )
 z_index = 4
 frames = SubResource( 240 )
-frame = 2
+frame = 3
 playing = true
 
 [node name="SelectionArea" type="Area2D" parent="."]
