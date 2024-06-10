@@ -1321,6 +1321,7 @@ cast_to = Vector2( 64, 0 )
 [node name="Cursor" type="AnimatedSprite" parent="."]
 position = Vector2( 40, 0 )
 rotation = 1.5708
+z_index = 5
 frames = SubResource( 233 )
 playing = true
 

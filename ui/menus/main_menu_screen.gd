@@ -99,3 +99,15 @@ func _on_KnightArea_mouse_entered():
 func _on_WizardArea_mouse_entered():
 	selected_character = "wizard"
 	handle_character_select()
+
+func _on_PrincessArea_input_event(viewport, event, shape_idx):
+	if Input.is_mouse_button_pressed(BUTTON_LEFT):
+		emit_signal("scene_changed", "level1")
+
+func _on_KnightArea_input_event(viewport, event, shape_idx):
+	if Input.is_mouse_button_pressed(BUTTON_LEFT):
+		emit_signal("scene_changed", "level2")
+
+func _on_WizardArea_input_event(viewport, event, shape_idx):
+	if Input.is_mouse_button_pressed(BUTTON_LEFT):
+		emit_signal("scene_changed", "level3")

@@ -9,6 +9,7 @@ func _ready():
 	ScoreTracker.connect("score_changed", self, "update_scores")
 	
 func update_scores():
+	ScoreTracker.update_high_score(level_name)
 	$"%HighScore".text = str(ScoreTracker.high_score[level_name])
 	$"%CurrentScore".text = str(ScoreTracker.current_score)
 	

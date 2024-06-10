@@ -1,7 +1,6 @@
 extends Node2D
 
 var eye_anim = "blink_cat"
-var stunned = false
 
 func _ready():
 	randomize()
@@ -20,12 +19,11 @@ func select_random_anim():
 	$AnimatedSprite.play(eye_anim)
 	$AnimatedSprite.frame = randi() % 44
 			
-func toggle_stunned_state():
-	stunned = !stunned
-	if stunned:
-		$AnimatedSprite.play("crazy")
-		$AnimatedSprite.frame = randi() % 4
-	else:
-		$AnimatedSprite.play(eye_anim)
-		$AnimatedSprite.frame = randi() % 44
+func start_stunned_state():
+	$AnimatedSprite.play("crazy")
+	$AnimatedSprite.frame = randi() % 4
+		
+func stop_stunned_state():
+	$AnimatedSprite.play(eye_anim)
+	$AnimatedSprite.frame = randi() % 44
 

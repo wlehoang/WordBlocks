@@ -53,3 +53,7 @@ func handle_score_change(letter: int):
 	var value = score_values[letter]
 	current_score += value * score_multiplier * 100
 	emit_signal("score_changed")
+	
+func update_high_score(level: String):
+	if current_score > high_score[level]:
+		high_score[level] = current_score

@@ -4,7 +4,7 @@
 [ext_resource path="res://entities/player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://levels/common/assets/shadow_tileset.png" type="Texture" id=3]
 [ext_resource path="res://levels/common/decorations.tscn" type="PackedScene" id=4]
-[ext_resource path="res://resources/music/easyMode.mp3" type="AudioStream" id=5]
+[ext_resource path="res://resources/music/hardMode.mp3" type="AudioStream" id=5]
 [ext_resource path="res://entities/mind_cat/mind_cat.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ui/hud/player_hud.tscn" type="PackedScene" id=7]
 
@@ -233,7 +233,7 @@ one_shot = true
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-volume_db = -10.0
+volume_db = -20.0
 autoplay = true
 bus = "Music"
 

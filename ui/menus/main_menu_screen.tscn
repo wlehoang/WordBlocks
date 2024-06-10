@@ -9,7 +9,7 @@
 [ext_resource path="res://ui/menus/options_screen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/assets/lit_floor.png" type="Texture" id=8]
 [ext_resource path="res://levels/common/eye.tscn" type="PackedScene" id=9]
-[ext_resource path="res://resources/music/titleScreen.mp3" type="AudioStream" id=10]
+[ext_resource path="res://resources/music/easyMode.mp3" type="AudioStream" id=10]
 [ext_resource path="res://resources/fonts/PixeloidSans.ttf" type="DynamicFontData" id=11]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -194,7 +194,7 @@ text = "EXIT"
 
 [node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
-volume_db = -10.0
+volume_db = -20.0
 autoplay = true
 mix_target = 1
 bus = "Music"
@@ -344,6 +344,9 @@ unique_name_in_owner = true
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/ButtonRows/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/ButtonRows/ExitButton" to="." method="_on_ExitButton_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/ButtonRows/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="input_event" from="PrincessArea" to="." method="_on_PrincessArea_input_event"]
 [connection signal="mouse_entered" from="PrincessArea" to="." method="_on_PrincessArea_mouse_entered"]
+[connection signal="input_event" from="KnightArea" to="." method="_on_KnightArea_input_event"]
 [connection signal="mouse_entered" from="KnightArea" to="." method="_on_KnightArea_mouse_entered"]
+[connection signal="input_event" from="WizardArea" to="." method="_on_WizardArea_input_event"]
 [connection signal="mouse_entered" from="WizardArea" to="." method="_on_WizardArea_mouse_entered"]

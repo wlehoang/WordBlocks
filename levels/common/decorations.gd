@@ -60,7 +60,7 @@ func set_random_decorations(nrange: Vector2, deco: String):
 		
 func start_stunned_timer():
 	$StunTimer.start(15)
-	get_tree().call_group("eye_decoration", "toggle_stunned_state")
+	get_tree().call_group("eye_decoration", "start_stunned_state")
 
 func _on_StunTimer_timeout():
-	get_tree().call_group("eye_decoration", "toggle_stunned_state")
+	get_tree().call_group("eye_decoration", "stop_stunned_state")
