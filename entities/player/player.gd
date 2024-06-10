@@ -11,7 +11,9 @@ var tile_size
 var inventory = -1
 var gravity = 1000
 var buff = "none"
-var buff_duration = 30
+var buff_duration = 10
+var death = false
+var mouse_position = Vector2.ZERO
 
 signal trapped
 signal timestopped
@@ -23,65 +25,90 @@ func _ready():
 	tile_size = Globals.tile_size
 	facing.cast_to = Vector2(tile_size, 0)
 	add_to_group("player")
+	
+func _process(delta):
+	if Globals.mouse_enabled:
+		mouse_position = get_global_mouse_position()
+		var player_pos = global_position
+		mouse_position.x = clamp(mouse_position.x, player_pos.x - tile_size, player_pos.x + tile_size)
+		mouse_position.y = clamp(mouse_position.y, player_pos.y - tile_size, player_pos.y + tile_size)
+		#Input.warp_mouse_position(mouse_position)
+		var mdir = (mouse_position - player_pos).normalized()
+		var direction_string = get_direction_string(mdir)
+		handle_selection_area(direction_string)
 
 func _physics_process(delta):
 	var _move = move_and_slide(Vector2(0, gravity + delta*0), Vector2.UP)
 	if int(position.x) % (tile_size/2) != 0 or int(position.y) % (tile_size/2) != 0:
 		position = Globals.snap_to_grid(position)
 
+func get_direction_string(dir: Vector2):
+	if abs(dir.x) > abs(dir.y):
+		if dir.x > 0: 
+			return "right" 
+		else: 
+			return "left"
+	else:
+		if dir.y > 0: 
+			return "down" 
+		else: 
+			return "up"
+
 func _unhandled_input(event):
-	if event.is_action_pressed("select_up"):
-		handle_selection_area("up")
-	elif event.is_action_pressed("select_down"):
-		handle_selection_area("down")
-	elif event.is_action_pressed("select_right"):
-		handle_selection_area("right")
-	elif event.is_action_pressed("select_left"):
-		handle_selection_area("left")
-	elif event.is_action_pressed("move_right"):
-		handle_move("right")
-	elif event.is_action_pressed("move_left"):
-		handle_move("left")
-	elif event.is_action_pressed("pickup_or_drop"):
-		if inventory == -1:
-			var all_selected = get_tree().get_nodes_in_group("selected")
-			if all_selected.size() > 0:
-				if all_selected[0].block_type != BlockTypes.Locked:
-					inventory = all_selected[0].block_type
-					all_selected[0].queue_free()
-					print("block picked up: " + str(inventory))
-					handle_held_block_effect()
-					if buff == "bomb":
-						inventory = BlockTypes.Bomb
-					elif buff == "void":
-						inventory = -1
-					$HeldBlock.handle_block_animation(inventory)
-		else:
-			if not facing.is_colliding():
-				print("block dropped: " + str(inventory))
-				var dropped_block = Blocks.instance()
-				var spawn_position = facing.global_transform * facing.cast_to
-				dropped_block.position = Globals.snap_to_grid(spawn_position)
-				dropped_block.select_block_type(inventory)
-				get_parent().add_child(dropped_block)
-				inventory = -1
-				if buff == "bomb":
-					inventory = BlockTypes.Bomb
-				$HeldBlock.handle_block_animation(inventory)
-			else:
-				var collider = facing.get_collider()
-				if collider.is_in_group("block"):
-					var sel_block = collider.block_type
-					if sel_block != BlockTypes.Locked:
-						collider.select_block_type(inventory)
-						inventory = sel_block
-						print("block swapped: " + str(inventory) + " for " + str(sel_block))
+	$AFKTimer.start()
+	if not death:
+		if event.is_action_pressed("select_up"):
+			handle_selection_area("up")
+		elif event.is_action_pressed("select_down"):
+			handle_selection_area("down")
+		elif event.is_action_pressed("select_right"):
+			handle_selection_area("right")
+		elif event.is_action_pressed("select_left"):
+			handle_selection_area("left")
+		elif event.is_action_pressed("move_right"):
+			handle_move("right")
+		elif event.is_action_pressed("move_left"):
+			handle_move("left")
+		elif event.is_action_pressed("pickup_or_drop"):
+			if inventory == -1:
+				var all_selected = get_tree().get_nodes_in_group("selected")
+				if all_selected.size() > 0:
+					if all_selected[0].block_type != BlockTypes.Locked:
+						inventory = all_selected[0].block_type
+						all_selected[0].queue_free()
+						print("block picked up: " + str(inventory))
 						handle_held_block_effect()
 						if buff == "bomb":
 							inventory = BlockTypes.Bomb
 						elif buff == "void":
 							inventory = -1
 						$HeldBlock.handle_block_animation(inventory)
+			else:
+				if not facing.is_colliding():
+					print("block dropped: " + str(inventory))
+					var dropped_block = Blocks.instance()
+					var spawn_position = facing.global_transform * facing.cast_to
+					dropped_block.position = Globals.snap_to_grid(spawn_position)
+					dropped_block.select_block_type(inventory)
+					get_parent().add_child(dropped_block)
+					inventory = -1
+					if buff == "bomb":
+						inventory = BlockTypes.Bomb
+					$HeldBlock.handle_block_animation(inventory)
+				else:
+					var collider = facing.get_collider()
+					if collider.is_in_group("block"):
+						var sel_block = collider.block_type
+						if sel_block != BlockTypes.Locked:
+							collider.select_block_type(inventory)
+							inventory = sel_block
+							print("block swapped: " + str(inventory) + " for " + str(sel_block))
+							handle_held_block_effect()
+							if buff == "bomb":
+								inventory = BlockTypes.Bomb
+							elif buff == "void":
+								inventory = -1
+							$HeldBlock.handle_block_animation(inventory)
 
 func handle_selection_area(area: String):
 	if area == "up":
@@ -100,18 +127,14 @@ func handle_selection_area(area: String):
 		selectionarea.global_position.x = global_position.x
 		selectionarea.global_position.y = global_position.y
 		facing.cast_to = Vector2(tile_size, 0)
-		direction = "right"
 		cursor.position = Vector2(tile_size * 0.6, 0)
 		cursor.rotation_degrees = 90
-		$PlayerModel.play(player_name + "_idle_" + direction)
 	elif area == "left":
 		selectionarea.global_position.x = global_position.x - 2*tile_size
 		selectionarea.global_position.y = global_position.y
 		facing.cast_to = Vector2(-tile_size, 0)
-		direction = "left"
 		cursor.position = Vector2(-tile_size * 0.6, 0)
 		cursor.rotation_degrees = -90
-		$PlayerModel.play(player_name + "_idle_" + direction)
 		
 func handle_move(dir: String):
 	var pos_delta = Vector2.ZERO
@@ -121,10 +144,6 @@ func handle_move(dir: String):
 	elif direction == "left":
 		pos_delta.x -= tile_size
 	var collision = move_and_collide(pos_delta)
-	if direction == "right":
-		handle_selection_area("right")
-	elif direction == "left":
-		handle_selection_area("left")
 	$PlayerModel.play(player_name + "_walk_" + direction)
 	if collision:
 		var collided_object = collision.get_collider()
@@ -179,6 +198,7 @@ func _on_AnimatedSprite_animation_finished():
 func _on_TrappedCheckTimer_timeout():
 	if inventory != -1:
 		if test_move(transform, Vector2(0, -tile_size)) and test_move(transform, Vector2(-tile_size, 0)) and test_move(transform, Vector2(tile_size, 0)):
+			death = true
 			$PlayerModel.play(player_name + "_death_" + direction)
 			yield($PlayerModel, "animation_finished")
 			emit_signal("trapped")
@@ -187,3 +207,9 @@ func _on_BuffTimer_timeout():
 	buff = ""
 	emit_signal("unbuffed")
 	$BuffAnimation.hide()
+
+func _on_AFKTimer_timeout():
+	death = true
+	$PlayerModel.play(player_name + "_death_" + direction)
+	yield($PlayerModel, "animation_finished")
+	emit_signal("trapped")
