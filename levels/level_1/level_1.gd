@@ -13,7 +13,7 @@ func _ready():
 	tile_size = Globals.tile_size
 	add_to_group("map")
 	$Player.player_name = player_name
-	$Player/AnimatedSprite.play(player_name + "_idle_right")
+	$Player/PlayerModel.play(player_name + "_idle_right")
 
 func handle_block_spawn(column):
 	var portal = Portals.instance()
@@ -50,17 +50,28 @@ func _on_Player_bonus_time():
 	randomize()
 	ScoreTracker.score_multiplier = 1 + randi() % 3
 	$BonusTimer.start(30)
+	$PlayerHUD.activate_special_icons("bonus")
 	
 func _on_BonusTimer_timeout():
 	ScoreTracker.score_multiplier = 1
+	$PlayerHUD.deactivate_special_icons("bonus")
 
 func _on_Player_timestopped():
 	$BlockFallTimer.paused = true
 	$BlockSpawnTimer.paused = true
 	$MoveTimer.paused = true
 	$PauseTimer.start(15)
+	$Decorations.start_stunned_timer()
+	$PlayerHUD.activate_special_icons("time")
 
 func _on_PauseTimer_timeout():
 	$BlockFallTimer.paused = false
 	$BlockSpawnTimer.paused = false
 	$MoveTimer.paused = false
+	$PlayerHUD.deactivate_special_icons("time")
+
+func _on_Player_buffed(buff):
+	$PlayerHUD.activate_buff_icon(buff)
+
+func _on_Player_unbuffed():
+	$PlayerHUD.deactivate_buff_icons()

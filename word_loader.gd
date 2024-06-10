@@ -10140,9 +10140,9 @@ var words6 = {
 }
 
 func has_word(word):
-	if word.length()==4:
+	if word.length() == 4:
 		return words4.has(word)
-	if word.length()==5:
+	if word.length() == 5:
 		return words5.has(word)
-	if word.length()==6:
+	if word.length() == 6:
 		return words6.has(word)

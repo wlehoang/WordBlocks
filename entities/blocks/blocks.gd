@@ -1,7 +1,8 @@
 extends KinematicBody2D
 
 enum Types {Empty, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, Random, Bonus, Pause, Bomb, Locked, Mystery}
-export (String) var block_type = Types.Empty
+export (int) var block_type = Types.Empty
+var chance_of_special_tile = 0.5
 var selected = false
 
 func _ready():
@@ -12,7 +13,7 @@ func handle_block_fall():
 	var pos_delta = Vector2.ZERO
 	pos_delta.y += Globals.tile_size;
 	if not test_move(transform, pos_delta):
-		var collision = move_and_collide(pos_delta)
+		var _collision = move_and_collide(pos_delta)
 	detect_word()
 
 func handle_block_selection():
@@ -29,7 +30,6 @@ func sample_letter():
 		
 func select_block_type(block_number: int = -1):
 	if block_number == -1:
-		var chance_of_special_tile = 0.15
 		randomize()
 		if randf() < chance_of_special_tile:
 			block_number = 27 + randi() % 6
@@ -100,17 +100,16 @@ func select_block_type(block_number: int = -1):
 			animation_name = "block_clock"
 		Types.Bomb:
 			animation_name = "block_bomb"
-			$ExplosionTimer.start(10)
 		Types.Locked:
 			animation_name = "block_locked"
 		Types.Mystery:
 			animation_name = "block_mystery"
-	$AnimatedSprite.play(animation_name)
+	$BlockAnimation.play(animation_name)
 
-func _on_SelectionArea_area_entered(area):
+func _on_SelectionArea_area_entered(_area):
 	handle_block_selection()
 
-func _on_SelectionArea_area_exited(area):
+func _on_SelectionArea_area_exited(_area):
 	handle_block_selection()
 
 func type_to_letter(type):
@@ -171,7 +170,7 @@ func type_to_letter(type):
 
 func detect_word():
 	var left = get_node("Left")
-	var up = get_node("Up")
+	#var up = get_node("Up")
 	if (left.get_overlapping_bodies().size() > 0 && "block_type" in left.get_overlapping_bodies()[0]):
 		return
 	var letter_chain = get_word_chain()
@@ -212,6 +211,7 @@ func pop_letter_chain(letter_indexes):
 	var letter_index = 0
 	while letter_tracker != null && letter_index < letter_indexes[1]:
 		if letter_index >= letter_indexes[0] && letter_index < letter_indexes[1]:
+			ScoreTracker.handle_score_change(letter_tracker.block_type)
 			letter_tracker.queue_free()
 		var right = letter_tracker.get_node("Right")
 		var collisions = right.get_overlapping_bodies()
@@ -226,6 +226,9 @@ func _on_ShowTimer_timeout():
 
 func _on_ExplosionTimer_timeout():
 	if block_type == Types.Bomb:
+		$Explosion.show()
+		$Explosion.play("explode")
+		yield($Explosion, "animation_finished")
 		var blast_zone = ["Up", "Down", "Left", "Right", "UpperRight", "LowerRight", "LowerLeft", "UpperLeft"]
 		for zone in blast_zone:
 			var area_node = get_node(zone)

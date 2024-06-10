@@ -1,10 +1,12 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://levels/level_2/level_2.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://levels/common/assets/shadow_tileset.png" type="Texture" id=3]
-[ext_resource path="res://levels/common/eye.tscn" type="PackedScene" id=4]
-[ext_resource path="res://resources/music/mediumMode.mp3" type="AudioStream" id=5]
+[ext_resource path="res://levels/common/decorations.tscn" type="PackedScene" id=4]
+[ext_resource path="res://resources/music/easyMode.mp3" type="AudioStream" id=5]
+[ext_resource path="res://entities/mind_cat/mind_cat.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ui/hud/player_hud.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -174,15 +176,12 @@ scene_name = "level2"
 
 [node name="BackgroundColor" type="ColorRect" parent="."]
 margin_right = 1024.0
-margin_bottom = 640.0
+margin_bottom = 832.0
 mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2( -1, -1 )
+position = Vector2( 0, 192 )
 tile_set = SubResource( 2 )
 show_collision = true
 collision_use_kinematic = true
@@ -190,53 +189,61 @@ collision_bounce = 1.0
 collision_layer = 5
 collision_mask = 5
 format = 1
-tile_data = PoolIntArray( 0, 0, 65540, 15, 0, 65538, 65536, 0, 65540, 65551, 0, 65538, 131072, 0, 65540, 131087, 0, 65538, 196608, 0, 65540, 196623, 0, 65538, 262144, 0, 65540, 262159, 0, 65538, 327680, 0, 65540, 327695, 0, 65538, 393216, 0, 65540, 393231, 0, 65538, 458752, 0, 65540, 458767, 0, 65538, 524288, 0, 65540, 524303, 0, 65538, 589824, 0, 65536, 589825, 0, 3, 589826, 0, 3, 589827, 0, 3, 589828, 0, 3, 589829, 0, 3, 589830, 0, 3, 589831, 0, 3, 589832, 0, 3, 589833, 0, 3, 589834, 0, 3, 589835, 0, 3, 589836, 0, 3, 589837, 0, 3, 589838, 0, 3, 589839, 0, 65537 )
+tile_data = PoolIntArray( -196608, 0, 0, -196607, 0, 131075, -196606, 0, 131075, -196605, 0, 131075, -196604, 0, 131075, -196603, 0, 131075, -196602, 0, 131075, -196601, 0, 131075, -196600, 0, 131075, -196599, 0, 131075, -196598, 0, 131075, -196597, 0, 131075, -196596, 0, 131075, -196595, 0, 131075, -196594, 0, 131075, -196593, 0, 1, -131072, 0, 65540, -131057, 0, 65538, -65536, 0, 65540, -65521, 0, 65538, 0, 0, 65540, 15, 0, 65538, 65536, 0, 65540, 65551, 0, 65538, 131072, 0, 65540, 131087, 0, 65538, 196608, 0, 65540, 196623, 0, 65538, 262144, 0, 65540, 262159, 0, 65538, 327680, 0, 65540, 327695, 0, 65538, 393216, 0, 65540, 393231, 0, 65538, 458752, 0, 65540, 458767, 0, 65538, 524288, 0, 65540, 524303, 0, 65538, 589824, 0, 65536, 589825, 0, 3, 589826, 0, 3, 589827, 0, 3, 589828, 0, 3, 589829, 0, 3, 589830, 0, 3, 589831, 0, 3, 589832, 0, 3, 589833, 0, 3, 589834, 0, 3, 589835, 0, 3, 589836, 0, 3, 589837, 0, 3, 589838, 0, 3, 589839, 0, 65537 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 unique_name_in_owner = true
-position = Vector2( 480, 544 )
+position = Vector2( 480, 736 )
+z_index = 5
+player_name = "knight"
+
+[node name="MindCat" parent="." instance=ExtResource( 6 )]
+position = Vector2( 520, 88 )
+rotation = -3.14159
+collision_layer = 4
+collision_mask = 4
+
+[node name="Decorations" parent="." instance=ExtResource( 4 )]
 z_index = 1
+
+[node name="PlayerHUD" parent="." instance=ExtResource( 7 )]
+level_name = "level2"
 
 [node name="BlockSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 2.0
+wait_time = 3.0
 autostart = true
 
 [node name="BlockFallTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 autostart = true
 
-[node name="YSort" type="YSort" parent="."]
+[node name="MoveTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.75
+autostart = true
 
-[node name="Eye1" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 840, 360 )
-scale = Vector2( 0.75, 0.75 )
+[node name="PauseTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
 
-[node name="Eye2" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 544, 136 )
-scale = Vector2( 0.5, 0.5 )
-
-[node name="Eye4" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 384, 280 )
-
-[node name="Eye3" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 768, 200 )
-
-[node name="Eye5" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 192, 144 )
-
-[node name="Eye6" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 216, 456 )
-scale = Vector2( 0.75, 0.75 )
-
-[node name="Eye7" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 640, 448 )
-scale = Vector2( 0.5, 0.5 )
+[node name="BonusTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+volume_db = -10.0
 autoplay = true
+bus = "Music"
 
+[connection signal="bonus_time" from="Player" to="." method="_on_Player_bonus_time"]
+[connection signal="buffed" from="Player" to="." method="_on_Player_buffed"]
+[connection signal="timestopped" from="Player" to="." method="_on_Player_timestopped"]
 [connection signal="trapped" from="Player" to="." method="_on_Player_trapped"]
+[connection signal="unbuffed" from="Player" to="." method="_on_Player_unbuffed"]
 [connection signal="timeout" from="BlockSpawnTimer" to="." method="_on_BlockSpawnTimer_timeout"]
 [connection signal="timeout" from="BlockFallTimer" to="." method="_on_BlockFallTimer_timeout"]
+[connection signal="timeout" from="MoveTimer" to="." method="_on_MoveTimer_timeout"]
+[connection signal="timeout" from="PauseTimer" to="." method="_on_PauseTimer_timeout"]
+[connection signal="timeout" from="BonusTimer" to="." method="_on_BonusTimer_timeout"]

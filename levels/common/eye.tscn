@@ -107,5 +107,5 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
 animation = "blink_cat"
-frame = 27
+frame = 34
 playing = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://levels/level_1/level_1.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://levels/common/decorations.tscn" type="PackedScene" id=4]
 [ext_resource path="res://resources/music/easyMode.mp3" type="AudioStream" id=5]
 [ext_resource path="res://entities/mind_cat/mind_cat.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ui/hud/player_hud.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -204,6 +205,8 @@ collision_mask = 4
 [node name="Decorations" parent="." instance=ExtResource( 4 )]
 z_index = 1
 
+[node name="PlayerHUD" parent="." instance=ExtResource( 7 )]
+
 [node name="BlockSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 3.0
@@ -233,8 +236,10 @@ autoplay = true
 bus = "Music"
 
 [connection signal="bonus_time" from="Player" to="." method="_on_Player_bonus_time"]
+[connection signal="buffed" from="Player" to="." method="_on_Player_buffed"]
 [connection signal="timestopped" from="Player" to="." method="_on_Player_timestopped"]
 [connection signal="trapped" from="Player" to="." method="_on_Player_trapped"]
+[connection signal="unbuffed" from="Player" to="." method="_on_Player_unbuffed"]
 [connection signal="timeout" from="BlockSpawnTimer" to="." method="_on_BlockSpawnTimer_timeout"]
 [connection signal="timeout" from="BlockFallTimer" to="." method="_on_BlockFallTimer_timeout"]
 [connection signal="timeout" from="MoveTimer" to="." method="_on_MoveTimer_timeout"]

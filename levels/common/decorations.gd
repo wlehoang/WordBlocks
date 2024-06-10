@@ -22,7 +22,7 @@ func set_random_decorations(nrange: Vector2, deco: String):
 	var max_x = 14 * tile_size
 	var min_y = 2.5 * tile_size
 	var max_y = 11 * tile_size
-	for n in range(num):
+	for _n in range(num):
 		var x = 0
 		var y = 0
 		var overlapping = true
@@ -57,3 +57,10 @@ func set_random_decorations(nrange: Vector2, deco: String):
 				new_deco.position = Vector2(x, y)
 				add_child(new_deco)
 		positions.append(Vector2(x, y))
+		
+func start_stunned_timer():
+	$StunTimer.start(15)
+	get_tree().call_group("eye_decoration", "toggle_stunned_state")
+
+func _on_StunTimer_timeout():
+	get_tree().call_group("eye_decoration", "toggle_stunned_state")
