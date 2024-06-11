@@ -739,7 +739,7 @@ position = Vector2( 9.53674e-07, -9.53674e-07 )
 scale = Vector2( 2, 2 )
 z_index = 2
 frames = SubResource( 166 )
-frame = 2
+frame = 3
 playing = true
 
 [node name="Explosion" type="AnimatedSprite" parent="."]

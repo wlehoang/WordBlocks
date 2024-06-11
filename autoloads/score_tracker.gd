@@ -6,7 +6,8 @@ onready var high_score = {
 	"level3": 0
 }
 onready var current_score = 0
-onready var score_multiplier: float = 1
+onready var score_multiplier = 1
+onready var level_multiplier = 1
 
 #1 point - A, E, I, O, U, L, N, S, T, R.
 #2 points - D, G.
@@ -58,11 +59,18 @@ func handle_score_change(letter: int):
 	
 func handle_multiplier_change(val: float):
 	if val == 1:
-		score_multiplier = 1
+		score_multiplier = level_multiplier
 	else:
 		score_multiplier *= val
 	emit_signal("multiplier_changed")
 	
 func update_high_score(level: String):
+	match level:
+		"level1":
+			level_multiplier = 1
+		"level2":
+			level_multiplier = 2
+		"level3":
+			level_multiplier = 3
 	if current_score > high_score[level]:
 		high_score[level] = current_score
