@@ -1,4 +1,4 @@
-[gd_scene load_steps=207 format=2]
+[gd_scene load_steps=208 format=2]
 
 [ext_resource path="res://entities/player/assets/princess.png" type="Texture" id=1]
 [ext_resource path="res://entities/player/player.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://entities/player/assets/wizard.png" type="Texture" id=6]
 [ext_resource path="res://ui/assets/cursor.png" type="Texture" id=7]
 [ext_resource path="res://entities/player/assets/buff.png" type="Texture" id=8]
+[ext_resource path="res://resources/shaders/lighting.png" type="Texture" id=9]
 
 [sub_resource type="AtlasTexture" id=160]
 flags = 4
@@ -1293,7 +1294,9 @@ animations = [ {
 } ]
 
 [node name="Player" type="KinematicBody2D"]
+light_mask = 2
 position = Vector2( 32, -32 )
+z_index = 10
 moving_platform_apply_velocity_on_leave = 2
 script = ExtResource( 2 )
 __meta__ = {
@@ -1369,6 +1372,11 @@ one_shot = true
 [node name="AFKTimer" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 9 )
+texture_scale = 0.4
+mode = 2
 
 [connection signal="animation_finished" from="PlayerModel" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="SelectionArea" to="." method="_on_SelectionArea_body_entered"]

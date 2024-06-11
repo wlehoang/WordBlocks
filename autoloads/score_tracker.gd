@@ -6,7 +6,7 @@ onready var high_score = {
 	"level3": 0
 }
 onready var current_score = 0
-onready var score_multiplier: int = 1
+onready var score_multiplier: float = 1
 
 #1 point - A, E, I, O, U, L, N, S, T, R.
 #2 points - D, G.
@@ -45,14 +45,23 @@ onready var score_values = {
 	26: 10
 }
 signal score_changed
+signal multiplier_changed
 
 func reset_score_tracker():
+	score_multiplier = 1
 	current_score = 0
 		
 func handle_score_change(letter: int):
 	var value = score_values[letter]
 	current_score += value * score_multiplier * 100
 	emit_signal("score_changed")
+	
+func handle_multiplier_change(val: float):
+	if val == 1:
+		score_multiplier = 1
+	else:
+		score_multiplier *= val
+	emit_signal("multiplier_changed")
 	
 func update_high_score(level: String):
 	if current_score > high_score[level]:

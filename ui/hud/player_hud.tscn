@@ -10,11 +10,11 @@
 
 [sub_resource type="StyleBoxEmpty" id=6]
 
-[sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 1 )
-
 [sub_resource type="DynamicFont" id=4]
 size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -109,11 +109,22 @@ texture = ExtResource( 3 )
 stretch_mode = 1
 
 [node name="Separator" type="VSeparator" parent="ScoreTracker/HBoxContainer"]
-margin_left = 178.0
-margin_right = 628.0
+margin_left = 171.0
+margin_right = 571.0
 margin_bottom = 41.0
-custom_constants/separation = 450
+custom_constants/separation = 400
 custom_styles/separator = SubResource( 6 )
+
+[node name="Multiplier" type="Label" parent="ScoreTracker/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 591.0
+margin_top = 2.0
+margin_right = 628.0
+margin_bottom = 39.0
+custom_fonts/font = SubResource( 4 )
+text = "X1"
+align = 3
+valign = 1
 
 [node name="HighScoreLabel" type="Label" parent="ScoreTracker/HBoxContainer"]
 unique_name_in_owner = true

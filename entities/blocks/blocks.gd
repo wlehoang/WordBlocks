@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 enum Types {Empty, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, Random, Bonus, Pause, Bomb, Locked, Mystery}
 export (int) var block_type = Types.Empty
-var chance_of_special_tile = 0.15
+var chance_of_special_tile = 0.1
 var selected = false
 
 func _ready():
@@ -27,12 +27,17 @@ func handle_block_selection():
 func sample_letter():
 	var letter_distribution = [1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 7, 7, 7, 8, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 11, 12, 12, 12, 12, 13, 13, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15, 16, 16, 17, 18, 18, 18, 18, 18, 18, 19, 19, 19, 19, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 22, 22, 23, 23, 24, 25, 25, 26]
 	return letter_distribution[randi() % letter_distribution.size()]
-		
+	
+func sample_special():
+	#Random, Bonus, Pause, Bomb, Locked, Mystery
+	var special_distribution = [27, 27, 28, 28, 29, 30, 31, 31, 32]
+	return special_distribution[randi() % special_distribution.size()]
+	
 func select_block_type(block_number: int = -1):
 	if block_number == -1:
 		randomize()
-		if randf() < chance_of_special_tile:
-			block_number = 27 + randi() % 6
+		if randf() <= chance_of_special_tile:
+			block_number = sample_special()
 		else:
 			block_number = sample_letter()
 	block_type = block_number

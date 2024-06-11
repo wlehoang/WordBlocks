@@ -48,12 +48,12 @@ func _on_Player_trapped():
 
 func _on_Player_bonus_time():
 	randomize()
-	ScoreTracker.score_multiplier = 1 + randi() % 3
+	ScoreTracker.handle_multiplier_change(2)
 	$BonusTimer.start(30)
 	$PlayerHUD.activate_special_icons("bonus")
 	
 func _on_BonusTimer_timeout():
-	ScoreTracker.score_multiplier = 1
+	ScoreTracker.handle_multiplier_change(1)
 	$PlayerHUD.deactivate_special_icons("bonus")
 
 func _on_Player_timestopped():

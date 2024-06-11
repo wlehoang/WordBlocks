@@ -205,6 +205,9 @@ collision_mask = 4
 [node name="Decorations" parent="." instance=ExtResource( 4 )]
 z_index = 1
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0, 0, 0, 1 )
+
 [node name="PlayerHUD" parent="." instance=ExtResource( 7 )]
 level_name = "level3"
 
@@ -219,7 +222,7 @@ autostart = true
 
 [node name="MoveTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 0.75
+wait_time = 0.25
 autostart = true
 
 [node name="PauseTimer" type="Timer" parent="."]

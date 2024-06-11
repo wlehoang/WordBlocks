@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://entities/mind_cat/mind_cat.gd" type="Script" id=1]
 [ext_resource path="res://entities/mind_cat/assets/mind_cat.png" type="Texture" id=2]
+[ext_resource path="res://resources/shaders/lighting.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -100,6 +101,7 @@ animations = [ {
 extents = Vector2( 170.667, 5.33334 )
 
 [node name="MindCat" type="KinematicBody2D"]
+light_mask = 2
 rotation = 3.14159
 scale = Vector2( 0.75, 0.75 )
 z_index = 4
@@ -114,5 +116,12 @@ playing = true
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.000108168, -42.6667 )
 shape = SubResource( 18 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( -0.396407, 4.72063 )
+scale = Vector2( 0.944943, 0.619072 )
+texture = ExtResource( 3 )
+texture_scale = 0.4
+mode = 2
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

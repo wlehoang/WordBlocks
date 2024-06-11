@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://levels/common/assets/eyes.png" type="Texture" id=1]
 [ext_resource path="res://levels/common/eye.gd" type="Script" id=2]
+[ext_resource path="res://resources/shaders/lighting.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
@@ -107,5 +108,13 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
 animation = "blink_cat"
-frame = 37
+frame = 6
 playing = true
+
+[node name="Light2D" type="Light2D" parent="."]
+light_mask = 2
+position = Vector2( -8.10623e-06, -2 )
+scale = Vector2( 0.933333, 0.883333 )
+texture = ExtResource( 3 )
+texture_scale = 0.1
+mode = 2

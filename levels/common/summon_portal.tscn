@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://levels/common/summon_portal.gd" type="Script" id=1]
 [ext_resource path="res://levels/common/assets/purple_portal.png" type="Texture" id=2]
+[ext_resource path="res://resources/shaders/lighting.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=179]
 flags = 4
@@ -88,18 +89,24 @@ animations = [ {
 "frames": [ SubResource( 179 ), SubResource( 180 ), SubResource( 181 ), SubResource( 182 ), SubResource( 183 ), SubResource( 184 ), SubResource( 185 ), SubResource( 186 ), SubResource( 187 ), SubResource( 188 ), SubResource( 189 ), SubResource( 190 ), SubResource( 191 ), SubResource( 192 ), SubResource( 193 ), SubResource( 194 ) ],
 "loop": false,
 "name": "spawn",
-"speed": 5.0
+"speed": 8.0
 } ]
 
 [node name="SummonPortal" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 8, -32 )
+position = Vector2( 8, -24 )
 rotation = 1.5708
 scale = Vector2( 2, 3 )
 z_index = 1
 frames = SubResource( 178 )
 animation = "spawn"
+
+[node name="Light2D" type="Light2D" parent="."]
+scale = Vector2( 0.64, 0.64 )
+texture = ExtResource( 3 )
+texture_scale = 0.3
+mode = 2
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

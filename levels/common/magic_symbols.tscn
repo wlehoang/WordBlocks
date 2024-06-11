@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://levels/common/assets/symbols.png" type="Texture" id=1]
 [ext_resource path="res://levels/common/magic_symbols.gd" type="Script" id=2]
+[ext_resource path="res://resources/shaders/lighting.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -45,5 +46,13 @@ animations = [ {
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 3.33786e-06, 0 )
 frames = SubResource( 7 )
 animation = "symbols"
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 0, -0.54546 )
+scale = Vector2( 1.33333, 1.24747 )
+texture = ExtResource( 3 )
+texture_scale = 0.1
+mode = 2
