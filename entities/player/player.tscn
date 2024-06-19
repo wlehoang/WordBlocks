@@ -1,4 +1,4 @@
-[gd_scene load_steps=208 format=2]
+[gd_scene load_steps=209 format=2]
 
 [ext_resource path="res://entities/player/assets/princess.png" type="Texture" id=1]
 [ext_resource path="res://entities/player/player.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://ui/assets/cursor.png" type="Texture" id=7]
 [ext_resource path="res://entities/player/assets/buff.png" type="Texture" id=8]
 [ext_resource path="res://resources/shaders/lighting.png" type="Texture" id=9]
+[ext_resource path="res://levels/common/sound_effects.tscn" type="PackedScene" id=10]
 
 [sub_resource type="AtlasTexture" id=160]
 flags = 4
@@ -1308,7 +1309,6 @@ position = Vector2( 0, -7.99997 )
 scale = Vector2( 3.5, 3.25 )
 frames = SubResource( 59 )
 animation = "wizard_death_right"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -1378,6 +1378,8 @@ autostart = true
 texture = ExtResource( 9 )
 texture_scale = 0.4
 mode = 2
+
+[node name="SoundEffects" parent="." instance=ExtResource( 10 )]
 
 [connection signal="animation_finished" from="PlayerModel" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="SelectionArea" to="." method="_on_SelectionArea_body_entered"]

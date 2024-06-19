@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://entities/player/assets/drop block.wav" type="AudioStream" id=1]
+[ext_resource path="res://entities/player/sound_effects.gd" type="Script" id=2]
+
+[node name="SoundEffects" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+bus = "Sfx"
+script = ExtResource( 2 )

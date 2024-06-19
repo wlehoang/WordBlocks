@@ -82,6 +82,7 @@ func _unhandled_input(event):
 							inventory = BlockTypes.Bomb
 						elif buff == "void":
 							inventory = -1
+						$SoundEffects.play_sound("pick up block")
 						$HeldBlock.handle_block_animation(inventory)
 			else:
 				if not facing.is_colliding():
@@ -94,6 +95,7 @@ func _unhandled_input(event):
 					inventory = -1
 					if buff == "bomb":
 						inventory = BlockTypes.Bomb
+					$SoundEffects.play_sound("drop block")
 					$HeldBlock.handle_block_animation(inventory)
 				else:
 					var collider = facing.get_collider()
