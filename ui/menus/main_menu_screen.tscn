@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://resources/fonts/PixeloidMono.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/menus/main_menu_screen.gd" type="Script" id=2]
@@ -65,6 +65,15 @@ extents = Vector2( 18.6667, 19.3333 )
 size = 8
 font_data = ExtResource( 11 )
 
+[sub_resource type="DynamicFont" id=29]
+size = 8
+font_data = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=30]
+size = 8
+extra_spacing_char = 1
+font_data = ExtResource( 11 )
+
 [sub_resource type="AtlasTexture" id=14]
 flags = 4
 atlas = ExtResource( 5 )
@@ -96,6 +105,11 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=25]
 extents = Vector2( 18.6667, 19.3333 )
 
+[sub_resource type="DynamicFont" id=31]
+size = 8
+extra_spacing_char = 1
+font_data = ExtResource( 11 )
+
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
 atlas = ExtResource( 6 )
@@ -126,6 +140,11 @@ animations = [ {
 
 [sub_resource type="RectangleShape2D" id=26]
 extents = Vector2( 18.6667, 19.3333 )
+
+[sub_resource type="DynamicFont" id=32]
+size = 8
+extra_spacing_char = 1
+font_data = ExtResource( 11 )
 
 [node name="MainMenuScreen" type="CanvasLayer"]
 pause_mode = 2
@@ -170,6 +189,7 @@ alignment = 1
 unique_name_in_owner = true
 margin_right = 1004.0
 margin_bottom = 25.0
+focus_mode = 0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 7 )
 text = "START"
@@ -179,6 +199,7 @@ unique_name_in_owner = true
 margin_top = 30.0
 margin_right = 1004.0
 margin_bottom = 55.0
+focus_mode = 0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 7 )
 text = "OPTIONS"
@@ -188,6 +209,7 @@ unique_name_in_owner = true
 margin_top = 60.0
 margin_right = 1004.0
 margin_bottom = 85.0
+focus_mode = 0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 8 )
 text = "EXIT"
@@ -213,7 +235,7 @@ texture = ExtResource( 8 )
 unique_name_in_owner = true
 frames = SubResource( 13 )
 animation = "idle"
-frame = 2
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PrincessArea"]
@@ -235,12 +257,34 @@ margin_right = 34.0
 margin_bottom = 79.0
 rect_scale = Vector2( 0.707129, 0.554671 )
 
-[node name="Label" type="Button" parent="PrincessArea/VBoxContainer"]
+[node name="Name1" type="Button" parent="PrincessArea/VBoxContainer"]
 margin_right = 53.0
 margin_bottom = 10.0
+focus_neighbour_left = NodePath("../../../WizardArea/VBoxContainer/Name3")
+focus_neighbour_right = NodePath("../../../KnightArea/VBoxContainer/Name2")
+focus_next = NodePath("../../../KnightArea/VBoxContainer/Name2")
+focus_previous = NodePath("../../../WizardArea/VBoxContainer/Name3")
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 28 )
 text = "PRINCESS"
+
+[node name="Score" type="Label" parent="PrincessArea/VBoxContainer"]
+margin_top = 14.0
+margin_right = 53.0
+margin_bottom = 24.0
+custom_fonts/font = SubResource( 29 )
+text = "SCORE:"
+align = 1
+
+[node name="Value1" type="Label" parent="PrincessArea/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 28.0
+margin_right = 53.0
+margin_bottom = 38.0
+custom_fonts/font = SubResource( 30 )
+text = "0"
+align = 1
+autowrap = true
 
 [node name="KnightArea" type="Area2D" parent="."]
 position = Vector2( 512, 480 )
@@ -256,6 +300,7 @@ texture = ExtResource( 8 )
 unique_name_in_owner = true
 frames = SubResource( 18 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KnightArea"]
@@ -277,12 +322,34 @@ margin_right = 34.0
 margin_bottom = 79.0
 rect_scale = Vector2( 0.707129, 0.554671 )
 
-[node name="Label" type="Button" parent="KnightArea/VBoxContainer"]
+[node name="Name2" type="Button" parent="KnightArea/VBoxContainer"]
 margin_right = 53.0
 margin_bottom = 10.0
+focus_neighbour_left = NodePath("../../../PrincessArea/VBoxContainer/Name1")
+focus_neighbour_right = NodePath("../../../WizardArea/VBoxContainer/Name3")
+focus_next = NodePath("../../../WizardArea/VBoxContainer/Name3")
+focus_previous = NodePath("../../../PrincessArea/VBoxContainer/Name1")
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 28 )
 text = "KNIGHT"
+
+[node name="Score" type="Label" parent="KnightArea/VBoxContainer"]
+margin_top = 14.0
+margin_right = 53.0
+margin_bottom = 24.0
+custom_fonts/font = SubResource( 29 )
+text = "SCORE:"
+align = 1
+
+[node name="Value2" type="Label" parent="KnightArea/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 28.0
+margin_right = 53.0
+margin_bottom = 38.0
+custom_fonts/font = SubResource( 31 )
+text = "0"
+align = 1
+autowrap = true
 
 [node name="WizardArea" type="Area2D" parent="."]
 position = Vector2( 680, 480 )
@@ -298,7 +365,7 @@ texture = ExtResource( 8 )
 unique_name_in_owner = true
 frames = SubResource( 23 )
 animation = "idle"
-frame = 2
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WizardArea"]
@@ -320,12 +387,34 @@ margin_right = 34.0
 margin_bottom = 79.0
 rect_scale = Vector2( 0.707129, 0.554671 )
 
-[node name="Label" type="Button" parent="WizardArea/VBoxContainer"]
+[node name="Name3" type="Button" parent="WizardArea/VBoxContainer"]
 margin_right = 53.0
 margin_bottom = 10.0
+focus_neighbour_left = NodePath("../../../KnightArea/VBoxContainer/Name2")
+focus_neighbour_right = NodePath("../../../PrincessArea/VBoxContainer/Name1")
+focus_next = NodePath("../../../PrincessArea/VBoxContainer/Name1")
+focus_previous = NodePath("../../../KnightArea/VBoxContainer/Name2")
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 28 )
 text = "WIZARD"
+
+[node name="Score" type="Label" parent="WizardArea/VBoxContainer"]
+margin_top = 14.0
+margin_right = 53.0
+margin_bottom = 24.0
+custom_fonts/font = SubResource( 29 )
+text = "SCORE:"
+align = 1
+
+[node name="Value3" type="Label" parent="WizardArea/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 28.0
+margin_right = 53.0
+margin_bottom = 38.0
+custom_fonts/font = SubResource( 32 )
+text = "0"
+align = 1
+autowrap = true
 
 [node name="Eye" parent="." instance=ExtResource( 9 )]
 position = Vector2( 344, 424 )
@@ -346,7 +435,13 @@ unique_name_in_owner = true
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/ButtonRows/ExitButton" to="." method="_on_ExitButton_pressed"]
 [connection signal="input_event" from="PrincessArea" to="." method="_on_PrincessArea_input_event"]
 [connection signal="mouse_entered" from="PrincessArea" to="." method="_on_PrincessArea_mouse_entered"]
+[connection signal="mouse_entered" from="PrincessArea/VBoxContainer/Name1" to="." method="_on_Name1_mouse_entered"]
+[connection signal="pressed" from="PrincessArea/VBoxContainer/Name1" to="." method="_on_Name1_pressed"]
 [connection signal="input_event" from="KnightArea" to="." method="_on_KnightArea_input_event"]
 [connection signal="mouse_entered" from="KnightArea" to="." method="_on_KnightArea_mouse_entered"]
+[connection signal="mouse_entered" from="KnightArea/VBoxContainer/Name2" to="." method="_on_Name2_mouse_entered"]
+[connection signal="pressed" from="KnightArea/VBoxContainer/Name2" to="." method="_on_Name2_pressed"]
 [connection signal="input_event" from="WizardArea" to="." method="_on_WizardArea_input_event"]
 [connection signal="mouse_entered" from="WizardArea" to="." method="_on_WizardArea_mouse_entered"]
+[connection signal="mouse_entered" from="WizardArea/VBoxContainer/Name3" to="." method="_on_Name_mouse_entered"]
+[connection signal="pressed" from="WizardArea/VBoxContainer/Name3" to="." method="_on_Name3_pressed"]

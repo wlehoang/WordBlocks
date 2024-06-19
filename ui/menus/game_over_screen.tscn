@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://resources/fonts/DarkDepths.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/menus/game_over_screen.gd" type="Script" id=2]
 [ext_resource path="res://resources/themes/button_theme.tres" type="Theme" id=3]
 [ext_resource path="res://resources/fonts/PixeloidMono.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://resources/fonts/PixeloidSans.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
@@ -19,6 +20,11 @@ size = 64
 outline_size = 2
 outline_color = Color( 0.54902, 0, 0.137255, 1 )
 font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 32
+extra_spacing_char = 1
+font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 4 )
@@ -48,13 +54,13 @@ margin_bottom = 827.0
 [node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 margin_right = 1014.0
 margin_bottom = 822.0
-custom_constants/separation = 60
+custom_constants/separation = 30
 alignment = 1
 
 [node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 310.0
+margin_top = 255.0
 margin_right = 1014.0
-margin_bottom = 382.0
+margin_bottom = 327.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme = SubResource( 2 )
@@ -65,10 +71,30 @@ text = "GAME OVER"
 align = 1
 valign = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 442.0
+[node name="ScoreLabel" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+unique_name_in_owner = true
+margin_top = 357.0
 margin_right = 1014.0
-margin_bottom = 512.0
+margin_bottom = 397.0
+custom_fonts/font = SubResource( 7 )
+text = "Final Score:"
+align = 1
+autowrap = true
+
+[node name="Score" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+unique_name_in_owner = true
+margin_top = 427.0
+margin_right = 1014.0
+margin_bottom = 467.0
+custom_fonts/font = SubResource( 7 )
+text = "0"
+align = 1
+autowrap = true
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
+margin_top = 497.0
+margin_right = 1014.0
+margin_bottom = 567.0
 
 [node name="ButtonRows" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
 margin_left = 457.0

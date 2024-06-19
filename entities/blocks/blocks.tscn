@@ -727,7 +727,8 @@ __meta__ = {
 scale = Vector2( 1.34, 1.34 )
 z_index = 1
 frames = SubResource( 131 )
-animation = "block_empty"
+animation = "block_bomb"
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -739,7 +740,7 @@ position = Vector2( 9.53674e-07, -9.53674e-07 )
 scale = Vector2( 2, 2 )
 z_index = 2
 frames = SubResource( 166 )
-frame = 3
+frame = 2
 playing = true
 
 [node name="Explosion" type="AnimatedSprite" parent="."]

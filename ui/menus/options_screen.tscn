@@ -271,6 +271,7 @@ action_name = "select_down"
 action_name = "pickup_or_drop"
 
 [node name="ToggleMouseButton" type="CheckButton" parent="MarginContainer/Tabs/Controls/MarginContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
 margin_right = 169.0
 margin_bottom = 40.0
 focus_mode = 0
@@ -281,7 +282,6 @@ custom_colors/font_color_hover_pressed = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 12 )
-pressed = true
 enabled_focus_mode = 0
 text = "Enable Mouse"
 

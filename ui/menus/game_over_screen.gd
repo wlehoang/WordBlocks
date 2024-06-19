@@ -6,6 +6,7 @@ var current_level
 
 func _ready() -> void:
 	$"%RestartButton".grab_focus()
+	$"%Score".text = str(ScoreTracker.current_score)
 	get_tree().paused = true
 
 func _on_RestartButton_pressed():

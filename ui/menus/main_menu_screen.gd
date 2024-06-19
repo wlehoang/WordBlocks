@@ -14,7 +14,7 @@ func _ready():
 	screen_size = get_viewport().size
 	var x_offset = (screen_size.x - (title_array.size() * block_size))/2
 	var y_offset = screen_size.y/4
-	$"%StartButton".grab_focus()
+	$PrincessArea/VBoxContainer/Name1.grab_focus()
 	for i in range(title_array.size()):
 		var block = Blocks.instance()
 		block.select_block_type(title_array[i])
@@ -23,6 +23,9 @@ func _ready():
 	handle_character_select()
 	$Eye.get_node("AnimatedSprite").play("blink_cat")
 	$Eye.rotation = 0
+	$"%Value1".text = str(ScoreTracker.high_score["level1"])
+	$"%Value2".text = str(ScoreTracker.high_score["level2"]) 
+	$"%Value3".text = str(ScoreTracker.high_score["level3"]) 
 	
 func handle_character_select():
 	match selected_character:
@@ -43,23 +46,23 @@ func handle_character_select():
 			$WizardArea/FadeOut.hide()
 
 func _input(event):
-	if event.is_action_pressed("select_right"):
+	if event.is_action_pressed("select_left") or event.is_action_pressed("ui_left") or event.is_action_pressed("ui_focus_prev"):
 		match selected_character:
 			"princess":
-				selected_character = "knight"
-			"knight":
 				selected_character = "wizard"
-			"wizard":
+			"knight":
 				selected_character = "princess"
+			"wizard":
+				selected_character = "knight"
 		handle_character_select()
-	elif event.is_action_pressed("select_left"):
+	elif event.is_action_pressed("select_right") or event.is_action_pressed("ui_right") or event.is_action_pressed("ui_focus_next"):
 		match selected_character:
 			"princess":
-				selected_character = "wizard"
-			"knight":
-				selected_character = "princess"
-			"wizard":
 				selected_character = "knight"
+			"knight":
+				selected_character = "wizard"
+			"wizard":
+				selected_character = "princess"
 		handle_character_select()
 			
 func _on_StartButton_pressed():
@@ -91,14 +94,17 @@ func _on_ExitButton_mouse_entered():
 func _on_PrincessArea_mouse_entered():
 	selected_character = "princess"
 	handle_character_select()
+	$PrincessArea/VBoxContainer/Name1.grab_focus()
 
 func _on_KnightArea_mouse_entered():
 	selected_character = "knight"
 	handle_character_select()
+	$KnightArea/VBoxContainer/Name2.grab_focus()
 
 func _on_WizardArea_mouse_entered():
 	selected_character = "wizard"
 	handle_character_select()
+	$WizardArea/VBoxContainer/Name3.grab_focus()
 
 func _on_PrincessArea_input_event(viewport, event, shape_idx):
 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
@@ -111,3 +117,27 @@ func _on_KnightArea_input_event(viewport, event, shape_idx):
 func _on_WizardArea_input_event(viewport, event, shape_idx):
 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
 		emit_signal("scene_changed", "level3")
+
+func _on_Name1_mouse_entered():
+	selected_character = "princess"
+	handle_character_select()
+	$PrincessArea/VBoxContainer/Name1.grab_focus()
+	
+func _on_Name2_mouse_entered():
+	selected_character = "knight"
+	handle_character_select()
+	$KnightArea/VBoxContainer/Name2.grab_focus()
+
+func _on_Name3_mouse_entered():
+	selected_character = "wizard"
+	handle_character_select()
+	$WizardArea/VBoxContainer/Name3.grab_focus()
+
+func _on_Name1_pressed():
+	emit_signal("scene_changed", "level1")
+
+func _on_Name2_pressed():
+	emit_signal("scene_changed", "level2")
+
+func _on_Name3_pressed():
+	emit_signal("scene_changed", "level3")
