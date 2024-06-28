@@ -28,6 +28,7 @@ size = 20
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=33]
+size = 20
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=8]
@@ -184,7 +185,7 @@ custom_styles/separator = SubResource( 27 )
 [node name="ButtonRows" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows"]
 margin_top = 260.0
 margin_right = 1004.0
-margin_bottom = 370.0
+margin_bottom = 375.0
 mouse_filter = 2
 custom_constants/separation = 5
 alignment = 1
@@ -212,7 +213,7 @@ text = "OPTIONS"
 unique_name_in_owner = true
 margin_top = 60.0
 margin_right = 1004.0
-margin_bottom = 80.0
+margin_bottom = 85.0
 focus_mode = 0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 33 )
@@ -220,9 +221,9 @@ text = "HELP"
 
 [node name="ExitButton" type="Button" parent="PanelContainer/MarginContainer/Rows/ButtonRows"]
 unique_name_in_owner = true
-margin_top = 85.0
+margin_top = 90.0
 margin_right = 1004.0
-margin_bottom = 110.0
+margin_bottom = 115.0
 focus_mode = 0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 8 )
@@ -249,7 +250,6 @@ texture = ExtResource( 8 )
 unique_name_in_owner = true
 frames = SubResource( 13 )
 animation = "idle"
-frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PrincessArea"]
@@ -314,6 +314,7 @@ texture = ExtResource( 8 )
 unique_name_in_owner = true
 frames = SubResource( 18 )
 animation = "idle"
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KnightArea"]
@@ -378,7 +379,6 @@ texture = ExtResource( 8 )
 unique_name_in_owner = true
 frames = SubResource( 23 )
 animation = "idle"
-frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WizardArea"]

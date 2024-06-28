@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://resources/fonts/PixeloidSans-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/menus/help_screen.gd" type="Script" id=2]
+[ext_resource path="res://resources/themes/button_theme.tres" type="Theme" id=3]
+[ext_resource path="res://resources/fonts/PixeloidSans.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
@@ -24,36 +26,42 @@ font_data = ExtResource( 1 )
 size = 14
 font_data = ExtResource( 1 )
 
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 4 )
+
 [node name="HelpScreen" type="Popup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+input_pass_on_modal_close_click = false
 script = ExtResource( 2 )
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 320.0
-margin_top = 300.0
-margin_right = -320.0
-margin_bottom = -200.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -250.0
+margin_top = -200.0
+margin_right = 250.0
+margin_bottom = 200.0
 custom_styles/panel = SubResource( 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 374.0
-margin_bottom = 322.0
+margin_right = 490.0
+margin_bottom = 390.0
 
 [node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
-margin_right = 364.0
-margin_bottom = 312.0
+margin_right = 480.0
+margin_bottom = 380.0
 custom_constants/separation = 10
 alignment = 1
 
 [node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 63.0
-margin_right = 364.0
-margin_bottom = 107.0
+margin_top = 97.0
+margin_right = 480.0
+margin_bottom = 141.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme = SubResource( 2 )
@@ -68,9 +76,9 @@ autowrap = true
 uppercase = true
 
 [node name="Subtitle" type="Label" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 117.0
-margin_right = 364.0
-margin_bottom = 137.0
+margin_top = 151.0
+margin_right = 480.0
+margin_bottom = 171.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme = SubResource( 2 )
@@ -85,9 +93,9 @@ autowrap = true
 uppercase = true
 
 [node name="L1" type="Label" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 147.0
-margin_right = 364.0
-margin_bottom = 165.0
+margin_top = 181.0
+margin_right = 480.0
+margin_bottom = 199.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme = SubResource( 2 )
@@ -102,9 +110,9 @@ autowrap = true
 uppercase = true
 
 [node name="L2" type="Label" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 175.0
-margin_right = 364.0
-margin_bottom = 193.0
+margin_top = 209.0
+margin_right = 480.0
+margin_bottom = 227.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme = SubResource( 2 )
@@ -119,9 +127,9 @@ autowrap = true
 uppercase = true
 
 [node name="L3" type="Label" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 203.0
-margin_right = 364.0
-margin_bottom = 221.0
+margin_top = 237.0
+margin_right = 480.0
+margin_bottom = 255.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme = SubResource( 2 )
@@ -136,9 +144,9 @@ autowrap = true
 uppercase = true
 
 [node name="L4" type="Label" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 231.0
-margin_right = 364.0
-margin_bottom = 249.0
+margin_top = 265.0
+margin_right = 480.0
+margin_bottom = 283.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme = SubResource( 2 )
@@ -151,3 +159,13 @@ align = 1
 valign = 1
 autowrap = true
 uppercase = true
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/Rows"]
+margin_right = 12.0
+margin_bottom = 20.0
+focus_mode = 0
+theme = ExtResource( 3 )
+custom_fonts/font = SubResource( 6 )
+text = "Close"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/Button" to="." method="_on_Button_pressed"]
