@@ -11,6 +11,5 @@ func _ready():
 	pass # Replace with function body.
 
 func play_sound(sfx):
-	print(sfx)
 	self.stream = load(sound_effects[sfx])
 	self.play()

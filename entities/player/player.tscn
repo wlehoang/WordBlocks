@@ -1309,7 +1309,6 @@ position = Vector2( 0, -7.99997 )
 scale = Vector2( 3.5, 3.25 )
 frames = SubResource( 59 )
 animation = "wizard_death_right"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -1381,6 +1380,7 @@ texture_scale = 0.4
 mode = 2
 
 [node name="SoundEffects" parent="." instance=ExtResource( 10 )]
+volume_db = -5.0
 
 [connection signal="animation_finished" from="PlayerModel" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="SelectionArea" to="." method="_on_SelectionArea_body_entered"]
