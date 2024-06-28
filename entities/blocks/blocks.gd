@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 enum Types {Empty, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, Random, Bonus, Pause, Bomb, Locked, Mystery}
 export (int) var block_type = Types.Empty
-var chance_of_special_tile = 0.1
+var chance_of_special_tile = 0.15
 var selected = false
 
 func _ready():
@@ -14,6 +14,12 @@ func handle_block_fall():
 	pos_delta.y += Globals.tile_size;
 	if not test_move(transform, pos_delta):
 		var _collision = move_and_collide(pos_delta)
+	else:
+		if position.y <= Globals.tile_size*2:
+			var all_blocks = get_tree().get_nodes_in_group("block")
+			for b in all_blocks:
+				if position.x == b.position.x:
+					b.select_block_type(Types.Locked)
 	detect_word()
 
 func handle_block_selection():
@@ -218,6 +224,7 @@ func pop_letter_chain(letter_indexes):
 		if letter_index >= letter_indexes[0] && letter_index < letter_indexes[1]:
 			ScoreTracker.handle_score_change(letter_tracker.block_type)
 			letter_tracker.queue_free()
+			$SoundEffects.play_sound("explosion")
 		var right = letter_tracker.get_node("Right")
 		var collisions = right.get_overlapping_bodies()
 		if collisions.size() > 0:

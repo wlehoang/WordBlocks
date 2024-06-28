@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://resources/fonts/PixeloidSans-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/menus/pause_screen.gd" type="Script" id=2]
 [ext_resource path="res://resources/themes/button_theme.tres" type="Theme" id=3]
 [ext_resource path="res://resources/fonts/PixeloidMono.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://ui/menus/options_screen.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ui/menus/help_screen.tscn" type="PackedScene" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
@@ -62,9 +63,9 @@ custom_constants/separation = 10
 alignment = 1
 
 [node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 69.0
+margin_top = 56.0
 margin_right = 364.0
-margin_bottom = 113.0
+margin_bottom = 100.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme = SubResource( 2 )
@@ -78,14 +79,14 @@ valign = 1
 uppercase = true
 
 [node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 123.0
+margin_top = 110.0
 margin_right = 364.0
-margin_bottom = 243.0
+margin_bottom = 255.0
 
 [node name="ButtonRows" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
 margin_left = 132.0
 margin_right = 231.0
-margin_bottom = 120.0
+margin_bottom = 145.0
 theme = ExtResource( 3 )
 custom_constants/separation = 5
 
@@ -124,11 +125,20 @@ theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 7 )
 text = "OPTIONS"
 
-[node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
+[node name="HelpButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
 unique_name_in_owner = true
 margin_top = 100.0
 margin_right = 99.0
 margin_bottom = 120.0
+theme = ExtResource( 3 )
+custom_fonts/font = SubResource( 7 )
+text = "HELP"
+
+[node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows"]
+unique_name_in_owner = true
+margin_top = 125.0
+margin_right = 99.0
+margin_bottom = 145.0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 8 )
 text = "QUIT"
@@ -142,6 +152,9 @@ layer = 3
 [node name="OptionsMenu" parent="OptionsLayer" instance=ExtResource( 5 )]
 unique_name_in_owner = true
 
+[node name="HelpScreen" parent="OptionsLayer" instance=ExtResource( 6 )]
+unique_name_in_owner = true
+
 [connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/ContinueButton" to="." method="_on_ContinueButton_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/ContinueButton" to="." method="_on_ContinueButton_pressed"]
 [connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/RestartButton" to="." method="_on_RestartButton_mouse_entered"]
@@ -150,5 +163,7 @@ unique_name_in_owner = true
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
 [connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/OptionsButton" to="." method="_on_OptionsButton_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/HelpButton" to="." method="_on_HelpButton_mouse_entered"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/HelpButton" to="." method="_on_HelpButton_pressed"]
 [connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/QuitButton" to="." method="_on_QuitButton_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/ButtonRows/QuitButton" to="." method="_on_QuitButton_pressed"]

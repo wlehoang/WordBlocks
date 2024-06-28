@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://resources/fonts/PixeloidMono.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/menus/main_menu_screen.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://levels/common/eye.tscn" type="PackedScene" id=9]
 [ext_resource path="res://resources/music/easyMode.mp3" type="AudioStream" id=10]
 [ext_resource path="res://resources/fonts/PixeloidSans.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://ui/menus/help_screen.tscn" type="PackedScene" id=12]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
@@ -24,6 +25,9 @@ border_color = Color( 0.164706, 0, 0.482353, 1 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=33]
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=8]
@@ -173,12 +177,12 @@ custom_constants/separation = 60
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/Rows"]
 margin_right = 1004.0
-margin_bottom = 225.0
-custom_constants/separation = 225
+margin_bottom = 200.0
+custom_constants/separation = 200
 custom_styles/separator = SubResource( 27 )
 
 [node name="ButtonRows" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows"]
-margin_top = 285.0
+margin_top = 260.0
 margin_right = 1004.0
 margin_bottom = 370.0
 mouse_filter = 2
@@ -204,11 +208,21 @@ theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 7 )
 text = "OPTIONS"
 
-[node name="ExitButton" type="Button" parent="PanelContainer/MarginContainer/Rows/ButtonRows"]
+[node name="HelpButton" type="Button" parent="PanelContainer/MarginContainer/Rows/ButtonRows"]
 unique_name_in_owner = true
 margin_top = 60.0
 margin_right = 1004.0
-margin_bottom = 85.0
+margin_bottom = 80.0
+focus_mode = 0
+theme = ExtResource( 3 )
+custom_fonts/font = SubResource( 33 )
+text = "HELP"
+
+[node name="ExitButton" type="Button" parent="PanelContainer/MarginContainer/Rows/ButtonRows"]
+unique_name_in_owner = true
+margin_top = 85.0
+margin_right = 1004.0
+margin_bottom = 110.0
 focus_mode = 0
 theme = ExtResource( 3 )
 custom_fonts/font = SubResource( 8 )
@@ -235,7 +249,7 @@ texture = ExtResource( 8 )
 unique_name_in_owner = true
 frames = SubResource( 13 )
 animation = "idle"
-frame = 3
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PrincessArea"]
@@ -300,7 +314,6 @@ texture = ExtResource( 8 )
 unique_name_in_owner = true
 frames = SubResource( 18 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KnightArea"]
@@ -365,7 +378,7 @@ texture = ExtResource( 8 )
 unique_name_in_owner = true
 frames = SubResource( 23 )
 animation = "idle"
-frame = 3
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WizardArea"]
@@ -427,10 +440,15 @@ follow_viewport_enable = true
 [node name="OptionsMenu" parent="OptionsLayer" instance=ExtResource( 7 )]
 unique_name_in_owner = true
 
+[node name="HelpScreen" parent="OptionsLayer" instance=ExtResource( 12 )]
+unique_name_in_owner = true
+
 [connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/ButtonRows/StartButton" to="." method="_on_StartButton_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/ButtonRows/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/ButtonRows/OptionsButton" to="." method="_on_OptionsButton_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/ButtonRows/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/ButtonRows/HelpButton" to="." method="_on_HelpButton_mouse_entered"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/ButtonRows/HelpButton" to="." method="_on_HelpButton_pressed"]
 [connection signal="mouse_entered" from="PanelContainer/MarginContainer/Rows/ButtonRows/ExitButton" to="." method="_on_ExitButton_mouse_entered"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/ButtonRows/ExitButton" to="." method="_on_ExitButton_pressed"]
 [connection signal="input_event" from="PrincessArea" to="." method="_on_PrincessArea_input_event"]

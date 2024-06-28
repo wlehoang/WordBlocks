@@ -141,3 +141,9 @@ func _on_Name2_pressed():
 
 func _on_Name3_pressed():
 	emit_signal("scene_changed", "level3")
+
+func _on_HelpButton_pressed():
+	$"%HelpScreen".show()
+
+func _on_HelpButton_mouse_entered():
+	$"%HelpButton".grab_focus()

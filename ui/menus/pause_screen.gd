@@ -47,3 +47,9 @@ func _on_OptionsButton_mouse_entered():
 
 func _on_QuitButton_mouse_entered():
 	$"%QuitButton".grab_focus()
+
+func _on_HelpButton_pressed():
+	$"%HelpScreen".show()
+
+func _on_HelpButton_mouse_entered():
+	$"%HelpButton".grab_focus()
