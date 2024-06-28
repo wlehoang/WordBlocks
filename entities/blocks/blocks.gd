@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 enum Types {Empty, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, Random, Bonus, Pause, Bomb, Locked, Mystery}
 export (int) var block_type = Types.Empty
-var chance_of_special_tile = 0.1
+var chance_of_special_tile = .1
 var selected = false
 
 func _ready():
@@ -218,6 +218,7 @@ func pop_letter_chain(letter_indexes):
 		if letter_index >= letter_indexes[0] && letter_index < letter_indexes[1]:
 			ScoreTracker.handle_score_change(letter_tracker.block_type)
 			letter_tracker.queue_free()
+			$SoundEffects.play_sound("explosion")
 		var right = letter_tracker.get_node("Right")
 		var collisions = right.get_overlapping_bodies()
 		if collisions.size() > 0:
