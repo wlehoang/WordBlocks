@@ -1335,7 +1335,7 @@ visible = false
 scale = Vector2( 0.75, 0.5 )
 z_index = 4
 frames = SubResource( 240 )
-frame = 3
+frame = 2
 playing = true
 
 [node name="SelectionArea" type="Area2D" parent="."]

@@ -224,6 +224,7 @@ func pop_letter_chain(letter_indexes):
 		if letter_index >= letter_indexes[0] && letter_index < letter_indexes[1]:
 			ScoreTracker.handle_score_change(letter_tracker.block_type)
 			letter_tracker.queue_free()
+			$SoundEffects.play_sound("explosion")
 		var right = letter_tracker.get_node("Right")
 		var collisions = right.get_overlapping_bodies()
 		if collisions.size() > 0:
