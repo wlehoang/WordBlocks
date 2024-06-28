@@ -57,7 +57,9 @@ func get_direction_string(dir: Vector2):
 func _unhandled_input(event):
 	$AFKTimer.start()
 	if not death:
-		if event.is_action_pressed("select_up"):
+		if event.is_action_pressed("surrender"):
+			handle_death_state()
+		elif event.is_action_pressed("select_up"):
 			handle_selection_area("up")
 		elif event.is_action_pressed("select_down"):
 			handle_selection_area("down")
@@ -185,6 +187,12 @@ func handle_held_block_effect():
 			$BuffTimer.start(buff_duration)
 			$BuffAnimation.show()
 			emit_signal("buffed", buff)
+			
+func handle_death_state():
+	death = true
+	$PlayerModel.play(player_name + "_death_" + direction)
+	yield($PlayerModel, "animation_finished")
+	emit_signal("trapped")
 
 func _on_SelectionArea_body_entered(body):
 	if body.is_in_group("block"):
@@ -200,10 +208,7 @@ func _on_AnimatedSprite_animation_finished():
 func _on_TrappedCheckTimer_timeout():
 	if inventory != -1:
 		if test_move(transform, Vector2(0, -tile_size)) and test_move(transform, Vector2(-tile_size, 0)) and test_move(transform, Vector2(tile_size, 0)):
-			death = true
-			$PlayerModel.play(player_name + "_death_" + direction)
-			yield($PlayerModel, "animation_finished")
-			emit_signal("trapped")
+			handle_death_state()
 
 func _on_BuffTimer_timeout():
 	buff = ""
@@ -211,7 +216,4 @@ func _on_BuffTimer_timeout():
 	$BuffAnimation.hide()
 
 func _on_AFKTimer_timeout():
-	death = true
-	$PlayerModel.play(player_name + "_death_" + direction)
-	yield($PlayerModel, "animation_finished")
-	emit_signal("trapped")
+	handle_death_state()
